@@ -2,7 +2,7 @@
     <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
         <h1 class="mb-1 font-medium">Contact Us</h1>
         <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">Feel free to reach out to us by filling out the form below.</p>
-        <form wire:submit.prevent="submitForm" class="flex flex-col gap-4">
+        <form wire:submit="send" class="flex flex-col gap-4">
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Name:</label>
                 <input type="text" id="name" wire:model="name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">

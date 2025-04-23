@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Mail\ContactMeMail;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
-
 class ContactForm extends Component
 {
     public $name;
@@ -21,14 +23,22 @@ class ContactForm extends Component
         return view('livewire.contact-form');
     }
 
-    public function submitForm()
+    public function updated($propertyName)
     {
-        $this->validate();
+        $this->validateOnly($propertyName);
+    }
 
-        dd('Form Submitted', [
-            'name' => $this->name,
-            'email' => $this->email,
-            'message' => $this->message,
-        ]);
+    public function send(){
+        $validatedData = $this->validate();
+
+        try {
+            Mail::to(users: 'support@domain.com')->send(new ContactMeMail($validatedData));
+
+            session()->flash('success', 'Your message has been sent successfully!');
+        } catch (\Throwable $th) {
+            session()->flash('error', 'There was an error sending your message. Please try again later.');
+        }
+
+        $this->reset();
     }
 }
