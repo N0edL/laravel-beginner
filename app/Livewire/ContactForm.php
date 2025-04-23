@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 class ContactForm extends Component
 {
-    public $name = '';
-    public $email = '';
-    public $message = '';
+    public $name;
+    public $email;
+    public $message;
 
     protected $rules = [
         'name' => 'required|string|min:3|max:255',
