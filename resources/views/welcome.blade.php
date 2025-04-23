@@ -50,23 +50,6 @@
             @endif
         </header>
 
-        @if (session()->has('success'))
-        <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full p-4">
-            <div class="w-full max-w-sm p-4 text-sm text-green-800 bg-green-100 rounded-lg shadow dark:bg-gray-800 dark:text-green-400"
-                role="alert">
-                <span class="font-medium">Success alert!</span> {{ session('success') }}
-            </div>
-        </div>
-        @endif
-        @if (session()->has('error'))
-        <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full p-4">
-            <div class="w-full max-w-sm p-4 text-sm text-red-800 bg-red-100 rounded-lg shadow dark:bg-gray-800 dark:text-red-400"
-                role="alert">
-                <span class="font-medium">Error alert!</span> {{ session('error') }}
-            </div>
-        </div>
-        @endif
-
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <livewire:contact-form />
         </div>

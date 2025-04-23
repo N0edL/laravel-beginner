@@ -32,7 +32,7 @@ class ContactForm extends Component
         $validatedData = $this->validate();
 
         try {
-            Mail::to(users: 'support@domain.com')->send(new ContactMeMail($validatedData));
+            Mail::to(users: $validatedData['email'])->send(new ContactMeMail($validatedData));
 
             session()->flash('success', 'Your message has been sent successfully!');
         } catch (\Throwable $th) {
