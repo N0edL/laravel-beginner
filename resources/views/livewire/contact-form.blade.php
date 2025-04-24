@@ -23,15 +23,15 @@
 
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Name:</label>
-                <input type="text" id="name" wire:model.defer="name" autocomplete="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
+                <input type="text" id="name" wire:model="name" autocomplete="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
                 @error('name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
 
                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Email:</label>
-                <input type="email" id="email" wire:model.defer="email" autocomplete="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
+                <input type="email" id="email" wire:model="email" autocomplete="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
                 @error('email') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
 
                 <label for="message" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Message:</label>
-                <textarea id="message" wire:model.defer="message" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]"></textarea>
+                <textarea id="message" wire:model="message" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]"></textarea>
                 @error('message') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
             </div>
             <div class="relative">

@@ -5,8 +5,6 @@
 
 ## Email: {{ $contactData['email'] }}
 
-## Message: {{ $contactData['message'] }}
-
-Thanks,<br>
-{{ config('app.name') }}
+## Message:
+{!! nl2br(e($contactData['message'])) !!}
 </x-mail::message>

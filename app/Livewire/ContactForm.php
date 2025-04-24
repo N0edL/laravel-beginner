@@ -69,7 +69,7 @@ class ContactForm extends Component
 
 
             Mail::to(users: $validatedData['email'])->send(new ContactMeMail([
-                'name' => 'Admin',
+                'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'message' => 'Thank you for contacting us. We will get back to you soon.',
             ]));
@@ -83,4 +83,11 @@ class ContactForm extends Component
         $this->reset();
     }
 
+    public function resetForm()
+    {
+        $this->name = '';
+        $this->email = '';
+        $this->message = '';
+        $this->honeypot = '';
+    }
 }
