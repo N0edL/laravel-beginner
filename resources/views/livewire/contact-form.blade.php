@@ -12,29 +12,41 @@
     <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
         <h1 class="mb-1 font-medium">Contact Us</h1>
         <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">Feel free to reach out to us by filling out the form below.</p>
-        <form wire:submit="send" class="flex flex-col gap-4">
+        <form wire:submit.prevent="send" class="flex flex-col gap-4">
             @csrf
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Name:</label>
-                <input type="text" id="name" wire:model="name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
+                <input type="text" id="name" wire:model="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
                 @error('name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Email:</label>
-                <input type="email" id="email" wire:model="email" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
+                <input type="email" id="email" wire:model="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
                 @error('email') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label for="message" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Message:</label>
-                <textarea id="message" wire:model="message" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]"></textarea>
+                <textarea id="message" wire:model="message" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]"></textarea>
                 @error('message') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
             </div>
 
-            <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                Submit
-            </button>
+            <!-- Submit Button -->
+            <div class="relative">
+                <button wire:loading.remove wire:target='send' type="submit" class="relative w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 ease-in-out">
+                    <span class="font-semibold">Submit</span>
+                </button>
+                <div wire:loading wire:target='send' class="relative w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 ease-in-out">
+                    <div class="flex items-center justify-center">
+                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                        </svg>
+                        <span class="ml-2 text-white font-medium">Sending...</span>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
     <div class="bg-[#fff2f2] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden">
