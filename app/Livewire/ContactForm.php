@@ -80,6 +80,6 @@ class ContactForm extends Component
             session()->flash('error', 'There was an error sending your message. Please try again later.');
         }
 
-        $this->reset();
+        $this->reset(['name', 'email', 'message', 'honeypot']);
     }
 }
