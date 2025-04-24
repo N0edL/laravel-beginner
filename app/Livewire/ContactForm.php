@@ -82,12 +82,4 @@ class ContactForm extends Component
 
         $this->reset();
     }
-
-    public function resetForm()
-    {
-        $this->name = '';
-        $this->email = '';
-        $this->message = '';
-        $this->honeypot = '';
-    }
 }
