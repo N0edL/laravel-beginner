@@ -25,12 +25,12 @@
         x-init="$watch('sidebarOpen', value => {}); window.addEventListener('resize', () => { if(window.innerWidth < 768) sidebarOpen = false; else sidebarOpen = true; })"
         >
         <div class="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex">
-            <!-- Sidebar -->
+            {{-- Sidebar --}}
             <aside
                 class="w-64 bg-white dark:bg-neutral-800 shadow flex flex-col transform transition-transform duration-300"
                 :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'"
             >
-                <!-- Logo -->
+                {{-- Logo --}}
                 <div class="p-6 border-b border-neutral-200 dark:border-neutral-700">
                     <div class="shrink-0 flex items-center justify-center">
                         <a href="{{ route('dashboard') }}">
@@ -43,15 +43,15 @@
                         </p>
                     </div>
                 </div>
-                <!-- Navigation -->
+                {{-- Navigation --}}
                 <nav class="flex-1 p-4">
                     @include('layouts.navigation')
                 </nav>
             </aside>
 
-            <!-- Main Content -->
+            {{-- Main Content --}}
             <div class="flex-1 flex flex-col transition-all duration-300" :class="sidebarOpen ? 'ml-0' : '-ml-64'">
-                <!-- Hotbar -->
+                {{-- Hotbar --}}
                 <div
                     class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between items-center">
                     <button
@@ -59,13 +59,13 @@
                         class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
                         aria-label="Toggle sidebar"
                         >
-                        <!-- Hamburger Icon -->
+                        {{-- Hamburger Icon --}}
                         <i
                             x-show="!sidebarOpen"
                             class="fas fa-bars transition-transform duration-300 transform"
                             x-bind:class="{'rotate-90': sidebarOpen}"
                         ></i>
-                        <!-- Close Icon -->
+                        {{-- Close Icon --}}
                         <i
                             x-show="sidebarOpen"
                             class="fas fa-times transition-transform duration-300 transform"
@@ -76,6 +76,17 @@
                     <h1 class="text-md font-medium text-neutral-300 text-center flex-1">
                         {{ $header }}
                     </h1>
+                    {{-- Fullscreen Button --}}
+                    <button
+                        x-data="{ fs: false }"
+                        x-init="document.addEventListener('fullscreenchange',()=>fs=!!document.fullscreenElement)"
+                        @click="fs ? document.exitFullscreen() : document.documentElement.requestFullscreen()"
+                        class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
+                        aria-label="Toggle fullscreen"
+                    >
+                        <i :class="fs ? 'fas fa-compress' : 'fas fa-expand'"></i>
+                    </button>
+                    <span class="mx-2"></span>
                     {{-- User Profile --}}
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100">
@@ -113,14 +124,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- Page Content -->
+                {{-- Page Content --}}
                 <main class="flex-1 p-6">
                     {{ $slot }}
                 </main>
             </div>
         </div>
 
-        <!-- Scripts -->
+        {{-- Scripts --}}
         @livewireScripts
     </body>
 </html>
