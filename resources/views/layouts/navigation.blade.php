@@ -4,14 +4,4 @@
         <i class="fa-solid fa-gauge-high w-5 mr-3"></i>
         <span>Dashboard</span>
     </a>
-    <a href="#"
-        class="flex items-center px-4 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700 transition text-neutral-700 dark:text-neutral-200">
-        <i class="fa-solid fa-user w-5 mr-3"></i>
-        <span>Profile</span>
-    </a>
-    <a href="#"
-        class="flex items-center px-4 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700 transition text-neutral-700 dark:text-neutral-200">
-        <i class="fa-solid fa-cog w-5 mr-3"></i>
-        <span>Settings</span>
-    </a>
 </div>

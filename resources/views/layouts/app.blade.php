@@ -26,10 +26,8 @@
         >
         <div class="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex">
             {{-- Sidebar --}}
-            <aside
-                class="w-64 bg-white dark:bg-neutral-800 shadow flex flex-col transform transition-transform duration-300"
-                :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'"
-            >
+            <aside class="w-64 bg-white dark:bg-neutral-800 shadow flex flex-col transform transition-transform duration-300"
+                :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'">
                 {{-- Logo --}}
                 <div class="p-6 border-b border-neutral-200 dark:border-neutral-700">
                     <div class="shrink-0 flex items-center justify-center">
@@ -52,38 +50,33 @@
             {{-- Main Content --}}
             <div class="flex-1 flex flex-col transition-all duration-300" :class="sidebarOpen ? 'ml-0' : '-ml-64'">
                 {{-- Hotbar --}}
-                <div
-                    class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between items-center">
-                    <button
+                <div class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between items-center">
+                    <button class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
                         @click="sidebarOpen = !sidebarOpen"
-                        class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
-                        aria-label="Toggle sidebar"
-                        >
+                        aria-label="Toggle sidebar">
                         {{-- Hamburger Icon --}}
                         <i
                             x-show="!sidebarOpen"
                             class="fas fa-bars transition-transform duration-300 transform"
-                            x-bind:class="{'rotate-90': sidebarOpen}"
-                        ></i>
+                            x-bind:class="{'rotate-90': sidebarOpen}">
+                        </i>
                         {{-- Close Icon --}}
                         <i
                             x-show="sidebarOpen"
                             class="fas fa-times transition-transform duration-300 transform"
-                            x-bind:class="{'-rotate-90': !sidebarOpen}"
-                        ></i>
+                            x-bind:class="{'-rotate-90': !sidebarOpen}">
+                        </i>
                     </button>
                     {{-- Page Label --}}
                     <h1 class="text-md font-medium text-neutral-300 text-center flex-1">
                         {{ $header }}
                     </h1>
                     {{-- Fullscreen Button --}}
-                    <button
+                    <button class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white justify-center items-center hidden md:flex"
                         x-data="{ fs: false }"
                         x-init="document.addEventListener('fullscreenchange',()=>fs=!!document.fullscreenElement)"
                         @click="fs ? document.exitFullscreen() : document.documentElement.requestFullscreen()"
-                        class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
-                        aria-label="Toggle fullscreen"
-                    >
+                        aria-label="Toggle fullscreen">
                         <i :class="fs ? 'fas fa-compress' : 'fas fa-expand'"></i>
                     </button>
                     <span class="mx-2"></span>
@@ -93,19 +86,17 @@
                             <span class="inline-flex items-center justify-center w-9 h-7 rounded-full border-2 border-neutral-300 dark:border-neutral-600">
                                 <i class="fa-solid text-sm fa-user w-full"></i>
                             </span>
-                            <span class="ml-2 text-sm font-medium">{{ Auth::user()->name }}</span>
+                            <span class="ml-2 text-sm font-medium hidden md:inline">{{ Auth::user()->name }}</span>
                             <i
                                 :class="open ? 'rotate-180' : 'rotate-0'"
-                                class="fa-solid ml-2 fa-chevron-down transition-all duration-300 text-xs"
-                            ></i>
+                                class="fa-solid ml-2 fa-chevron-down transition-all duration-300 text-xs">
+                            </i>
                         </button>
-                        <div
+                        <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded shadow-lg z-50"
                             x-show="open"
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-20"
-                            @click.away="open = false"
-                            class="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded shadow-lg z-50"
-                            >
+                            @click.away="open = false">
                             <div class="px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200">
                                 <p class="font-medium">{{ Auth::user()->name }}</p>
                                 <p class="text-xs text-neutral-500 dark:text-neutral-400">{{ Auth::user()->email }}</p>
