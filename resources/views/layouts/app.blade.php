@@ -21,17 +21,33 @@
     </head>
     <x-toast />
     <body class="font-sans antialiased"
-        x-data="{ sidebarOpen: window.innerWidth >= 768 }"
-        x-init="$watch('sidebarOpen', value => {}); window.addEventListener('resize', () => { if(window.innerWidth < 768) sidebarOpen = false; else sidebarOpen = true; })"
+        x-data="{
+            sidebarOpen: JSON.parse(localStorage.getItem('sidebarOpen')) ?? (window.innerWidth >= 768),
+            toggleSidebar() {
+                this.sidebarOpen = !this.sidebarOpen;
+                localStorage.setItem('sidebarOpen', JSON.stringify(this.sidebarOpen));
+            }
+        }"
+        x-init="
+            $watch('sidebarOpen', value => localStorage.setItem('sidebarOpen', JSON.stringify(value)));
+            window.addEventListener('resize', () => {
+                if(window.innerWidth < 768) sidebarOpen = false;
+                else sidebarOpen = true;
+                localStorage.setItem('sidebarOpen', JSON.stringify(sidebarOpen));
+            });
+        ">
+        <div
+            class="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex"
+            x-cloak
+            x-init="$el.classList.remove('hidden')"
         >
-        <div class="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex">
             {{-- Sidebar --}}
             <aside class="w-64 bg-white dark:bg-neutral-800 shadow flex flex-col transform transition-transform duration-300"
                 :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'">
                 {{-- Logo --}}
                 <div class="p-6 border-b border-neutral-200 dark:border-neutral-700">
                     <div class="shrink-0 flex items-center justify-center">
-                        <a href="{{ route('dashboard') }}">
+                        <a href="{{ route('admin.index') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-neutral-100" />
                         </a>
                     </div>
@@ -52,17 +68,19 @@
                 {{-- Hotbar --}}
                 <div class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between gap-2 items-center">
                     <button class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
-                        @click="sidebarOpen = !sidebarOpen"
+                        @click="toggleSidebar()"
                         aria-label="Toggle sidebar">
                         {{-- Hamburger Icon --}}
                         <i
                             x-show="!sidebarOpen"
-                            class="fas fa-bars transition-transform duration-300 transform"
+                            x-cloak
+                            class="fas fa-bars transition-transform duration-300 transform h"
                             x-bind:class="{'rotate-90': sidebarOpen}">
                         </i>
                         {{-- Close Icon --}}
                         <i
                             x-show="sidebarOpen"
+                            x-cloak
                             class="fas fa-times transition-transform duration-300 transform"
                             x-bind:class="{'-rotate-90': !sidebarOpen}">
                         </i>
@@ -94,6 +112,7 @@
                         </button>
                         <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded shadow-lg z-50"
                             x-show="open"
+                            x-cloak
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-20"
                             @click.away="open = false">

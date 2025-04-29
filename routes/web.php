@@ -10,9 +10,16 @@ Route::get('/', function () {
 
 Route::get('/contact', ContactForm::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::redirect('/', '/admin/home');
+    Route::get('/home', function () {
+        return view('admin.index');
+    })->name('index');
+
+    Route::get('/portfolio', function () {
+        return view('admin.portfolio');
+    })->name('portfolio');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
