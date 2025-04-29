@@ -19,8 +19,8 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body
-        class="font-sans antialiased"
+    <x-toast />
+    <body class="font-sans antialiased"
         x-data="{ sidebarOpen: window.innerWidth >= 768 }"
         x-init="$watch('sidebarOpen', value => {}); window.addEventListener('resize', () => { if(window.innerWidth < 768) sidebarOpen = false; else sidebarOpen = true; })"
         >
@@ -50,7 +50,7 @@
             {{-- Main Content --}}
             <div class="flex-1 flex flex-col transition-all duration-300" :class="sidebarOpen ? 'ml-0' : '-ml-64'">
                 {{-- Hotbar --}}
-                <div class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between items-center">
+                <div class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between gap-2 items-center">
                     <button class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
                         @click="sidebarOpen = !sidebarOpen"
                         aria-label="Toggle sidebar">
@@ -79,7 +79,7 @@
                         aria-label="Toggle fullscreen">
                         <i :class="fs ? 'fas fa-compress' : 'fas fa-expand'"></i>
                     </button>
-                    <span class="mx-2"></span>
+                    <span></span>
                     {{-- User Profile --}}
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100">
