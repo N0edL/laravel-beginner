@@ -10,6 +10,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,24 +24,25 @@
         x-data="{ sidebarOpen: window.innerWidth >= 768 }"
         x-init="$watch('sidebarOpen', value => {}); window.addEventListener('resize', () => { if(window.innerWidth < 768) sidebarOpen = false; else sidebarOpen = true; })"
         >
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
+        <div class="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex">
             <!-- Sidebar -->
             <aside
-                class="w-64 bg-white dark:bg-gray-800 shadow flex flex-col transform transition-transform duration-300"
+                class="w-64 bg-white dark:bg-neutral-800 shadow flex flex-col transform transition-transform duration-300"
                 :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'"
             >
                 <!-- Logo -->
-                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                    <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                <div class="p-6 border-b border-neutral-200 dark:border-neutral-700">
+                    <div class="shrink-0 flex items-center justify-center">
+                        <a href="{{ route('dashboard') }}">
+                            <x-application-logo class="block h-9 w-auto fill-current text-neutral-100" />
+                        </a>
+                    </div>
+                    <div class="mt-2 justify-center text-center">
+                        <p class="text-sm text-neutral-400">
+                            {{ __('Your application description') }}
+                        </p>
+                    </div>
                 </div>
-                <!-- Header -->
-                @isset($header)
-                    <header class="bg-gray-50 dark:bg-gray-700 p-4 border-b border-gray-200 dark:border-gray-700">
-                        {{ $header }}
-                    </header>
-                @endisset
                 <!-- Navigation -->
                 <nav class="flex-1 p-4">
                     @include('layouts.navigation')
@@ -50,21 +53,58 @@
             <div class="flex-1 flex flex-col transition-all duration-300" :class="sidebarOpen ? 'ml-0' : '-ml-64'">
                 <!-- Hotbar -->
                 <div
-                    class="bg-white dark:bg-gray-800 shadow px-6 py-3 flex items-center space-x-4">
+                    class="bg-white dark:bg-neutral-800 shadow px-6 py-3 flex justify-between items-center">
                     <button
                         @click="sidebarOpen = !sidebarOpen"
-                        class="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition text-white"
+                        class="p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition text-white flex justify-center items-center"
                         aria-label="Toggle sidebar"
                         >
                         <!-- Hamburger Icon -->
-                        <svg x-show="!sidebarOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                        <i
+                            x-show="!sidebarOpen"
+                            class="fas fa-bars transition-transform duration-300 transform"
+                            x-bind:class="{'rotate-90': sidebarOpen}"
+                        ></i>
                         <!-- Close Icon -->
-                        <svg x-show="sidebarOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                        <i
+                            x-show="sidebarOpen"
+                            class="fas fa-times transition-transform duration-300 transform"
+                            x-bind:class="{'-rotate-90': !sidebarOpen}"
+                        ></i>
                     </button>
+                    {{-- Page Label --}}
+                    <h1 class="text-md font-medium text-neutral-300 text-center flex-1">
+                        {{ $header }}
+                    </h1>
+                    {{-- User Profile --}}
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100">
+                            <i class="fa-solid fa-user w-5"></i>
+                        </button>
+                        <div
+                            x-show="open"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-20"
+                            @click.away="open = false"
+                            class="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded shadow-lg z-50"
+                            >
+                            <div class="px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200">
+                                <p class="font-medium">{{ Auth::user()->name }}</p>
+                                <p class="text-xs text-neutral-500 dark:text-neutral-400">{{ Auth::user()->email }}</p>
+                            </div>
+                            <div class="border-t border-neutral-200 dark:border-neutral-700"></div>
+                            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700">
+                                Profile
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-red-100 dark:hover:bg-red-500 hover:text-red-600 dark:hover:text-red-100 transition-colors duration-150">
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- Page Content -->
                 <main class="flex-1 p-6">
