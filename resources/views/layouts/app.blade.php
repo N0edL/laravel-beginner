@@ -39,7 +39,7 @@
                     </div>
                     <div class="mt-2 justify-center text-center">
                         <p class="text-sm text-neutral-400">
-                            {{ __('Your application description') }}
+                            {{ __( config('app.description', 'No description found!') ) }}
                         </p>
                     </div>
                 </div>
@@ -79,7 +79,14 @@
                     {{-- User Profile --}}
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100">
-                            <i class="fa-solid fa-user w-5"></i>
+                            <span class="inline-flex items-center justify-center w-9 h-7 rounded-full border-2 border-neutral-300 dark:border-neutral-600">
+                                <i class="fa-solid text-sm fa-user w-full"></i>
+                            </span>
+                            <span class="ml-2 text-sm font-medium">{{ Auth::user()->name }}</span>
+                            <i
+                                :class="open ? 'rotate-180' : 'rotate-0'"
+                                class="fa-solid ml-2 fa-chevron-down transition-all duration-300 text-xs"
+                            ></i>
                         </button>
                         <div
                             x-show="open"
@@ -94,13 +101,13 @@
                             </div>
                             <div class="border-t border-neutral-200 dark:border-neutral-700"></div>
                             <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700">
-                                Profile
+                                {{ __("Profile") }}
                             </a>
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
                                 <button type="submit"
-                                    class="w-full text-left px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-red-100 dark:hover:bg-red-500 hover:text-red-600 dark:hover:text-red-100 transition-colors duration-150">
-                                    Logout
+                                    class="w-full text-left px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 rounded-b hover:bg-red-100 dark:hover:bg-red-500 hover:text-red-600 dark:hover:text-red-100 transition-colors duration-150">
+                                    {{ __("Logout") }}
                                 </button>
                             </form>
                         </div>
