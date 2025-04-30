@@ -21,7 +21,7 @@
         @livewireStyles
     </head>
     <body>
-        <div class="min-h-screen bg-gradient-to-b from-black to-dark-gray text-white">
+        <div class="min-h-screen bg-gradient-to-b from-black to-gray-dark text-white">
             <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 bg-transparent">
                 <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
                     <a href="#hero" class="font-bold text-xl">
