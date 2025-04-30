@@ -18,25 +18,44 @@ export default {
                     DEFAULT: '#262626',
                     dark: '#1A1A1A',
                 },
-                '_blue': "#0A84FF",
-                '_indigo': "#5E5CE6",
-                '_purple': "#BF5AF2",
-                '_mint': "#66D4CF",
-                '_green': "#30D158",
-                '_yellow': "#FFD60A",
-                '_orange': "#FF9F0A",
-                '_pink': "#FF375F",
-                '_red': "#FF453A",
-                '_white': "#FFFFFF",
-                '_light-white': "#F2F2F7",
+                blue: {
+                    DEFAULT: "#0A84FF",
+                },
+                indigo: {
+                    DEFAULT: "#5E5CE6",
+                },
+                purple: {
+                    DEFAULT: "#BF5AF2",
+                },
+                mint: {
+                    DEFAULT: "#66D4CF",
+                },
+                green: {
+                    DEFAULT: "#30D158",
+                },
+                yellow: {
+                    DEFAULT: "#FFD60A",
+                },
+                orange: {
+                    DEFAULT: "#FF9F0A",
+                },
+                pink: {
+                    DEFAULT: "#FF375F",
+                },
+                red: {
+                    DEFAULT: "#FF453A",
+                },
+                white: {
+                    DEFAULT: "#F5F5F7",
+                }
             },
 
             fontFamily: {
                 sans: [
-                    "-apple-system",
-                    "BlinkMacSystemFont",
-                    "San Francisco",
+                    "SF Pro Display",
+                    "SF Pro Icons",
                     "Helvetica Neue",
+                    "Helvetica",
                     "Arial",
                     "sans-serif",
                 ],
