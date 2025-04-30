@@ -19,7 +19,7 @@ export default {
                     dark: '#1A1A1A',
                 },
                 blue: {
-                    DEFAULT: "#0A84FF",
+                    DEFAULT: "#0076df",
                 },
                 indigo: {
                     DEFAULT: "#5E5CE6",

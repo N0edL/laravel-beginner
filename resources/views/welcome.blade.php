@@ -22,72 +22,75 @@
     </head>
     <body>
         <div class="min-h-screen bg-gradient-to-b from-black to-gray-dark text-white">
-            <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 bg-transparent">
-                <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                    <a href="#hero" class="font-bold text-xl">
+            <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 bg-black bg-opacity-20 backdrop-blur-lg">
+                <nav x-data="{ open: false }" class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                    <a href="{{ route('home')}}" class="font-semibold text-xl">
                         <x-application-logo />
                     </a>
 
                     <!-- Desktop Navigation -->
-                    <nav class="hidden md:block">
+                    <div class="hidden md:block">
                         <ul class="flex space-x-8">
                             @foreach(['hero' => 'Home', 'projects' => 'Projects', 'about' => 'About', 'skills' => 'Skills', 'contact' => 'Contact'] as $id => $label)
                                 <li>
                                     <a href="#{{ $id }}"
-                                        class="nav-link px-2 py-1 text-sm font-medium transition-colors duration-200"
+                                        class="nav-link px-2 py-1 text-sm font-medium transition-colors duration-200 text-gray-100 hover:text-gray-300"
                                         data-section="{{ $id }}">
                                         {{ $label }}
                                     </a>
                                 </li>
                             @endforeach
                             @if (Route::has('login'))
+                                <li class="hidden md:block border-l border-gray-light h-6"></li>
                                 @auth
-                                    <li class="hidden md:block border-l border-gray h-6"></li>
                                     <li>
-                                        <a href="{{ url('/admin') }}" class="nav-link px-2 py-1 text-sm font-medium transition-colors duration-200">
+                                        <a href="{{ route('login') }}" class="nav-link px-2.5 py-1 text-sm font-medium transition-colors duration-200 bg-blue rounded-full">
                                             Admin
                                         </a>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ route('login') }}" class="nav-link px-2 py-1 text-sm font-medium transition-colors duration-200">
-                                            Admin
+                                        <a href="{{ route('login') }}" class="nav-link px-2.5 py-1 text-sm font-medium transition-colors duration-200 bg-blue rounded-full">
+                                            Login
                                         </a>
                                     </li>
                                 @endauth
                             @endif
                         </ul>
-                    </nav>
-
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="block md:hidden p-2 rounded-md text-white" aria-label="Toggle menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
-                            <line x1="4" x2="20" y1="12" y2="12"></line>
-                            <line x1="4" x2="20" y1="6" y2="6"></line>
-                            <line x1="4" x2="20" y1="18" y2="18"></line>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon hidden">
-                            <path d="M18 6 6 18"></path>
-                            <path d="m6 6 12 12"></path>
-                        </svg>
+                    </div>
+                    <!-- Hamburger -->
+                    <button @click="open = !open" class="md:hidden flex items-center justify-center">
+                        <div class="grid justify-items-center gap-1.5">
+                            <span class="h-0.5 w-7 rounded-full bg-white transition" :class="{ 'translate-y-1 rotate-45': open }"></span>
+                            <span class="h-0.5 w-7 rounded-full bg-white transition" :class="{ '-translate-y-1 -rotate-45': open }"></span>
+                        </div>
                     </button>
-                </div>
-
-                <!-- Mobile Navigation -->
-                <nav id="mobileMenu" class="fixed inset-x-0 top-16 z-50 hidden bg-white shadow-md pb-4 md:hidden">
-                    <ul class="flex flex-col space-y-2 px-6 py-4">
-                        @foreach(['hero' => 'Home', 'projects' => 'Projects', 'about' => 'About', 'skills' => 'Skills', 'contact' => 'Contact'] as $id => $label)
-                            <li>
-                                <a href="#{{ $id }}"
-                                    class="mobile-nav-link block px-3 py-2 text-base font-medium hover:bg-gray-100 rounded-md"
-                                    data-section="{{ $id }}">
-                                    {{ $label }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
                 </nav>
             </header>
+
+            <main class="pt-24">
+                <main class="pt-24">
+                    <section id="hero" class="py-[2000px]">
+                        <!-- Hero content -->
+                    </section>
+
+                    <section id="projects" class="py-20">
+                        <!-- Projects content -->
+                    </section>
+
+                    <section id="about" class="py-20">
+                        <!-- About content -->
+                    </section>
+
+                    <section id="skills" class="py-20">
+                        <!-- Skills content -->
+                    </section>
+
+                    <section id="contact" class="py-20">
+                        <!-- Contact content -->
+                    </section>
+                </main>
+            </main>
         </div>
         <!-- Scripts -->
         @livewireScripts
