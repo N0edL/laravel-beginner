@@ -12,9 +12,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                '_black': "#000000",
-                '_dark-gray': "#1A1A1A",
-                '_gray': "#262626",
+                'black': "#000000",
+                'dark-gray': "#1A1A1A",
+                'gray': "#262626",
                 '_light-gray': "#3A3A3C",
                 '_blue': "#0A84FF",
                 '_indigo': "#5E5CE6",
