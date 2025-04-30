@@ -90,7 +90,7 @@
                             @if (Route::has('login'))
                                 <li class="border-t border-gray-light pt-5">
                                     @auth
-                                        <a href="{{ route('login') }}" class="nav-link px-3.5 py-2 text-base font-medium transition-colors duration-200 bg-blue rounded-full">
+                                        <a href="{{ route('admin.index') }}" class="nav-link px-3.5 py-2 text-base font-medium transition-colors duration-200 bg-blue rounded-full">
                                             Admin
                                         </a>
                                     @else
