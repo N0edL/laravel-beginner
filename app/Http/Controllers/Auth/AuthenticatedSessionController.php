@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -26,7 +27,6 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
         $request->session()->flash('success', 'Successfully logged in.');
 
         return redirect()->intended(route('admin.index', absolute: false));
@@ -45,6 +45,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->flash('info', 'You have been logged out.');
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 }
