@@ -22,14 +22,14 @@
     </head>
     <body>
         <div class="min-h-screen bg-gradient-to-b from-black to-gray-dark text-white">
-            <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 bg-black bg-opacity-20 backdrop-blur-lg">
-                <nav x-data="{ open: false }" class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <header x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-black bg-opacity-20 backdrop-blur-lg z-50 transition-all duration-300">
+                <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                     <a href="{{ route('home')}}" class="font-semibold text-xl">
                         <x-application-logo />
                     </a>
 
                     <!-- Desktop Navigation -->
-                    <div class="hidden md:block">
+                    <nav class="hidden md:block">
                         <ul class="flex space-x-8">
                             @foreach(['hero' => 'Home', 'projects' => 'Projects', 'about' => 'About', 'skills' => 'Skills', 'contact' => 'Contact'] as $id => $label)
                                 <li>
@@ -57,7 +57,8 @@
                                 @endauth
                             @endif
                         </ul>
-                    </div>
+                    </nav>
+
                     <!-- Hamburger -->
                     <button @click="open = !open" class="md:hidden flex items-center justify-center">
                         <div class="grid justify-items-center gap-1.5">
@@ -65,7 +66,43 @@
                             <span class="h-0.5 w-7 rounded-full bg-white transition" :class="{ '-translate-y-1 -rotate-45': open }"></span>
                         </div>
                     </button>
-                </nav>
+                </div>
+
+                <!-- Mobile Navigation -->
+                <div
+                    x-show="open"
+                    x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="opacity-0 translate-y-4"
+                    :class="{'block md:hidden': open, 'hidden': ! open}"
+                    class="hidden mb-6 px-4">
+                    <nav class="">
+                        <ul class="flex flex-col space-y-4">
+                            @foreach(['hero' => 'Home', 'projects' => 'Projects', 'about' => 'About', 'skills' => 'Skills', 'contact' => 'Contact'] as $id => $label)
+                                <li>
+                                    <a href="#{{ $id }}"
+                                        class="nav-link px-2 py-4 font-medium transition-colors duration-200 text-gray-100 hover:text-gray-300"
+                                        data-section="{{ $id }}"
+                                        @click="open = false">
+                                        {{ $label }}
+                                    </a>
+                                </li>
+                            @endforeach
+                            @if (Route::has('login'))
+                                <li class="border-t border-gray-light pt-5">
+                                    @auth
+                                        <a href="{{ route('login') }}" class="nav-link px-3.5 py-2 text-base font-medium transition-colors duration-200 bg-blue rounded-full">
+                                            Admin
+                                        </a>
+                                    @else
+                                        <a href="{{ route('login') }}" class="nav-link px-3.5 py-2 text-base font-medium transition-colors duration-200 bg-blue rounded-full">
+                                            Login
+                                        </a>
+                                    @endauth
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                </div>
             </header>
 
             <main class="pt-24">
