@@ -108,12 +108,12 @@
             <section id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-b from-purple/10 to-blue/5 opacity-20"></div>
 
-                <div class="circle-1 absolute top-1/4 right-1/4 w-64 h-64 bg-blue/10 rounded-full blur-3xl"></div>
+                <div class="circle-1 absolute bottom-1/3 left-1/2 w-80 h-80 bg-blue/10 rounded-full blur-3xl"></div>
                 <div class="circle-2 absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple/10 rounded-full blur-3xl"></div>
 
                 <div class="section-container relative z-10">
                     <div class="max-w-4xl mx-auto text-center">
-                        <div class="fade-in-item" style="animation-delay: 0.2s">
+                        <div class="fade-in-item " style="animation-delay: 0.2s">
                             <span class="inline-block px-4 py-2 mb-6 text-sm font-medium text-blue bg-blue/10 rounded-full">
                                 Full-Stack Developer
                             </span>
@@ -129,23 +129,23 @@
                         </p>
 
                         <div class="fade-in-item flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay: 0.8s">
-                            <a href="#projects" class="button-primary flex items-center gap-2">
+                            <a href="#projects" class="bg-blue hover:bg-blue/90 text-white font-medium transition-all duration-300 rounded-full py-2 px-4 flex items-center gap-2">
                                 View My Work
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </a>
-                            <a href="#contact" class="button-secondary flex items-center gap-2">
+                            <a href="#contact" class="bg-gray-light hover:bg-gray-light/90 text-white font-medium transition-all duration-300 rounded-full py-2 px-4 flex items-center gap-2">
                                 Get In Touch
                             </a>
                         </div>
                     </div>
 
-                    <div class="flex justify-center mt-10">
-                        <button id="scroll-to-projects" class="fade-in-item relative flex flex-col items-center cursor-pointer hover:text-white transition-colors duration-300" style="animation-delay: 1.5s">
+                    <div class="flex justify-center mt-32">
+                        <a href="#projects" class="fade-in-item relative flex flex-col items-center cursor-pointer hover:text-white transition-colors duration-300" style="animation-delay: 1.5s">
                             <span class="text-white/60 text-sm mb-2">Scroll to explore</span>
-                            <div class="bounce-arrow">
+                            <div class="animate-bounce">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
                             </div>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>

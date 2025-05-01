@@ -4,6 +4,11 @@
 
 [x-cloak] { display: none !important; }
 
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Animation for fading in elements */
 .fade-in-item {
     opacity: 0;
@@ -16,38 +21,6 @@
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* Button styles */
-.button-primary {
-    display: inline-flex;
-    padding: 0.75rem 1.5rem;
-    background-color: #0076df;
-    color: white;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.button-primary:hover {
-    background-color: #0060b3;
-    transform: translateY(-2px);
-}
-
-.button-secondary {
-    display: inline-flex;
-    padding: 0.75rem 1.5rem;
-    background-color: transparent;
-    color: white;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.button-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
 }
 
 /* Animated background circles */
@@ -69,14 +42,4 @@
     0% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(-40px, 40px) scale(1.15); }
     100% { transform: translate(0, 0) scale(1); }
-}
-
-/* Bounce animation for the arrow */
-.bounce-arrow {
-    animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
 }
