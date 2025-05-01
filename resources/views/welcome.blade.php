@@ -139,12 +139,14 @@
                         </div>
                     </div>
 
-                    <button id="scroll-to-projects" class="fade-in-item absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center cursor-pointer hover:text-white transition-colors duration-300" style="animation-delay: 1.5s">
-                        <span class="text-white/60 text-sm mb-2">Scroll to explore</span>
-                        <div class="bounce-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
-                        </div>
-                    </button>
+                    <div class="flex justify-center mt-10">
+                        <button id="scroll-to-projects" class="fade-in-item relative flex flex-col items-center cursor-pointer hover:text-white transition-colors duration-300" style="animation-delay: 1.5s">
+                            <span class="text-white/60 text-sm mb-2">Scroll to explore</span>
+                            <div class="bounce-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </section>
             <section id="projects" class="py-24 bg-gradient-to-b from-gray-dark to-black relative">
