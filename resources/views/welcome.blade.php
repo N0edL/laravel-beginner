@@ -44,7 +44,7 @@
                                 <li class="hidden md:block border-l border-gray-light h-6"></li>
                                 @auth
                                     <li>
-                                        <a href="{{ route('login') }}" class="nav-link px-2.5 py-1 text-sm font-medium transition-colors duration-200 bg-blue rounded-full">
+                                        <a href="{{ route('admin.index') }}" class="nav-link px-2.5 py-1 text-sm font-medium transition-colors duration-200 bg-blue rounded-full">
                                             Admin
                                         </a>
                                     </li>
@@ -112,7 +112,7 @@
 
                 <div class="section-container relative z-10">
                     <div class="max-w-4xl mx-auto text-center">
-                        <div class="fade-in-item " style="animation-delay: 0.2s">
+                        <div class="fade-in-item" style="animation-delay: 0.2s">
                             <span class="inline-block px-4 py-2 mb-6 text-sm font-medium text-blue bg-blue/10 rounded-full">
                                 Full-Stack Developer
                             </span>
@@ -149,10 +149,31 @@
                 </div>
             </section>
 
-            <section id="projects" class="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-b from-gray-dark to-black"></div>
+            <section id="projects" class="py-24 bg-gradient-to-b from-gray-dark to-black relative">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(30,64,175,0.05),transparent_50%)] opacity-70"></div>
 
-                <h1>Text</h1>
+                <div class="max-w-7xl mx-auto px-6 py-24 sm:px-8 md:px-12 lg:px-16 relative z-10">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight fade-in-item">Latest Projects</h2>
+                    <p class="text-lg sm:text-xl text-white/80 mb-16 max-w-2xl fade-in-item">
+                        A showcase of my recent work, featuring modern design, clean code, and intuitive user experiences.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative fade-in-item" style="opacity: 1; transform: none;">
+                            <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
+                                <h3 class="text-xl font-bold text-white text-center">Project Alpha</h3>
+                            </div>
+                            <div class="text-white/80 text-sm mb-3 line-clamp-2">A modern e-commerce platform with seamless checkout experience and intuitive product filtering.</div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">React</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">Node.js</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">MongoDB</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">Stripe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
         <!-- Scripts -->

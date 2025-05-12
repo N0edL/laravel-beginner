@@ -12,6 +12,7 @@ Route::get('/contact', ContactForm::class);
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', '/admin/home');
+
     Route::get('/home', function () {
         return view('admin.index');
     })->name('index');
