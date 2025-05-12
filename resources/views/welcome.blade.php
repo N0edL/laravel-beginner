@@ -22,7 +22,7 @@
     </head>
     <body>
         <div class="min-h-screen bg-gradient-to-b from-black to-gray-dark text-white">
-            <header x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
+            <header x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-black  bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
                 <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                     <a href="{{ route('home')}}" class="font-semibold text-xl">
                         <x-application-logo />
@@ -106,7 +106,6 @@
             </header>
 
             <section id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-b from-purple/10 to-blue/5 opacity-20"></div>
 
                 <div class="circle-1 absolute bottom-1/3 left-1/2 w-80 h-80 bg-blue/10 rounded-full blur-3xl"></div>
                 <div class="circle-2 absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple/10 rounded-full blur-3xl"></div>
@@ -149,121 +148,11 @@
                     </div>
                 </div>
             </section>
-            <section id="projects" class="py-24 bg-gradient-to-b from-gray-dark to-black relative">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(30,64,175,0.05),transparent_50%)] opacity-70"></div>
 
-                <div class="section-container relative z-10 animate-section">
-                    <h2 class="section-title">Latest Projects</h2>
-                    <p class="section-subtitle">
-                        A showcase of my recent work, featuring modern design, clean code, and intuitive user experiences.
-                    </p>
+            <section id="projects" class="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-b from-gray-dark to-black"></div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                        <!-- Project Card 1 -->
-                        <div class="project-card" data-index="0">
-                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div class="p-6">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-xl font-bold text-white">Project Alpha</h3>
-                                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-blue/20 text-blue">E-commerce</span>
-                                    </div>
-                                    <p class="text-white/70 mb-4">A modern e-commerce platform with seamless checkout experience and intuitive product filtering.</p>
-                                    <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">React</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Node.js</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">MongoDB</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Stripe</span>
-                                    </div>
-                                    <div class="border-t border-white/10 pt-4 flex justify-between text-sm text-white/60">
-                                        <span>Client: Alpha Industries</span>
-                                        <span>Duration: 3 months</span>
-                                    </div>
-                                </div>
-                                <a href="https://project-alpha.example.com" target="_blank" rel="noopener" class="block bg-gray py-3 text-center text-white hover:bg-blue transition-colors duration-300">
-                                    View Project
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Project Card 2 -->
-                        <div class="project-card" data-index="1">
-                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div class="p-6">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-xl font-bold text-white">Dashboard UI</h3>
-                                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-indigo/20 text-indigo">Analytics</span>
-                                    </div>
-                                    <p class="text-white/70 mb-4">Beautiful analytics dashboard with real-time data visualization and responsive design.</p>
-                                    <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">TypeScript</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">D3.js</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Tailwind CSS</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Firebase</span>
-                                    </div>
-                                    <div class="border-t border-white/10 pt-4 flex justify-between text-sm text-white/60">
-                                        <span>Client: Tech Corp</span>
-                                        <span>Duration: 2 months</span>
-                                    </div>
-                                </div>
-                                <a href="https://dashboard.example.com" target="_blank" rel="noopener" class="block bg-gray py-3 text-center text-white hover:bg-indigo transition-colors duration-300">
-                                    View Project
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Project Card 3 -->
-                        <div class="project-card" data-index="2">
-                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div class="p-6">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-xl font-bold text-white">Mobile App</h3>
-                                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-green/20 text-green">Mobile</span>
-                                    </div>
-                                    <p class="text-white/70 mb-4">Cross-platform mobile application for fitness tracking with social sharing capabilities.</p>
-                                    <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">React Native</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Redux</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">GraphQL</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">AWS</span>
-                                    </div>
-                                    <div class="border-t border-white/10 pt-4 flex justify-between text-sm text-white/60">
-                                        <span>Client: FitTech</span>
-                                        <span>Duration: 4 months</span>
-                                    </div>
-                                </div>
-                                <a href="https://mobile-app.example.com" target="_blank" rel="noopener" class="block bg-gray py-3 text-center text-white hover:bg-green transition-colors duration-300">
-                                    View Project
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Project Card 4 -->
-                        <div class="project-card" data-index="3">
-                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div class="p-6">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-xl font-bold text-white">Portfolio Generator</h3>
-                                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-purple/20 text-purple">Web Tool</span>
-                                    </div>
-                                    <p class="text-white/70 mb-4">Web tool that helps designers and developers create stunning portfolios without coding.</p>
-                                    <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Vue.js</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Nuxt</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">Prisma</span>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">PostgreSQL</span>
-                                    </div>
-                                    <div class="border-t border-white/10 pt-4 flex justify-between text-sm text-white/60">
-                                        <span>Client: Self</span>
-                                        <span>Duration: 1 month</span>
-                                    </div>
-                                </div>
-                                <a href="https://portfolio-gen.example.com" target="_blank" rel="noopener" class="block bg-gray py-3 text-center text-white hover:bg-purple transition-colors duration-300">
-                                    View Project
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h1>Text</h1>
             </section>
         </div>
         <!-- Scripts -->
