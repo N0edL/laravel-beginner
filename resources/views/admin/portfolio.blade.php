@@ -46,11 +46,7 @@
             </div>
 
             <!-- Projects Table -->
-            <div class="bg-white dark:bg-neutral-800 overflow-hidden shadow-sm sm:rounded-lg fade-in-item" style="animation-delay: 0.5s;">
-                <div class="p-6 text-neutral-900 dark:text-neutral-100">
-                    @livewire('projects-tabel')
-                </div>
-            </div>
+            @livewire('projects-tabel')
         </div>
     </div>
 </x-app-layout>

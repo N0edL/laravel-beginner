@@ -29,8 +29,8 @@ class ProjectsTabel extends Component
 
     protected $rules = [
         'name' => 'required|string|max:55',
-        'description' => 'nullable|string',
-        'stack' => 'nullable|string',
+        'description' => 'required|string',
+        'stack' => 'required|string',
         'due_date' => 'nullable|date',
         'active' => 'boolean',
     ];
