@@ -12,11 +12,24 @@ class Project extends Model
     protected $fillable = [
         'name',
         'description',
-        'status',
+        'stack',
+        'active',
         'due_date',
     ];
 
     protected $casts = [
         'due_date' => 'date',
+        'active' => 'boolean',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (!$model->due_date) {
+                $model->due_date = now();
+            }
+        });
+    }
 }
