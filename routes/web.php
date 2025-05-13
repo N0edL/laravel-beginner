@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\ContactForm;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,9 +18,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         return view('admin.index');
     })->name('index');
 
-    Route::get('/portfolio', function () {
-        return view('admin.portfolio');
-    })->name('portfolio');
+    Route::get('/portfolio', [AdminController::class, 'portfolio'])->name('portfolio');
 });
 
 Route::middleware('auth')->group(function () {
