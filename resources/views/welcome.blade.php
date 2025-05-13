@@ -159,26 +159,31 @@
                     </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                        <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative fade-in-item">
-                            <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
-                                <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
-                                <h3 class="text-xl font-bold text-white text-center">Project Alpha</h3>
-                            </div>
-                            <div class="text-white/80 text-sm mb-3 line-clamp-2">A modern e-commerce platform with seamless checkout experience and intuitive product filtering.</div>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">React</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">Node.js</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">MongoDB</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-light-gray/30 rounded-full text-white/70">Stripe</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-white/70">Jan 2023</span>
-                                <a href="#"
-                                    class="text-sm text-blue ">
-                                    View Project
-                                </a>
-                            </div>
-                        </div>
+
+                        @foreach ($Projects as $project)
+                            @if ($project->active)
+                                <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative fade-in-item">
+                                    <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
+                                        <h3 class="text-xl font-bold text-white text-center">{{ $project->name }}</h3>
+                                    </div>
+                                    <div class="text-white/80 text-sm mb-3 line-clamp-2">{{ $project->description }}</div>
+                                    <div class="flex flex-wrap gap-1.5 mb-4">
+                                        @foreach (explode(',', $project->stack ?? '') as $tech)
+                                            @if (trim($tech) !== '')
+                                                <span class="px-2 py-0.5 text-xs font-medium bg-gray-200/10 rounded-full text-white/70">{{ trim($tech) }}</span>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-white/70">{{ optional($project->due_date)->format('M Y') }}</span>
+                                        <a href="#" class="text-sm text-blue ">
+                                            View Project
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </section>
