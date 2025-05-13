@@ -36,12 +36,12 @@
                 </div>
                 <div class="bg-white dark:bg-neutral-800 rounded-xl shadow p-6 flex flex-col items-center fade-in-item" style="animation-delay: 0.4s;">
                     <div class="text-yellow text-3xl mb-2">
-                        <svg class="w-8 h-8 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                        <svg class="w-8 h-8 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m0 0l-6-6m6 6l6-6"></path></svg>
                     </div>
                     <div class="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
-                        {{ $completedProjects ?? 7 }}
+                        {{ $totalSkills ?? 7 }}
                     </div>
-                    <div class="text-neutral-500 dark:text-neutral-400">Completed Projects</div>
+                    <div class="text-neutral-500 dark:text-neutral-400">Total Skills</div>
                 </div>
             </div>
 
