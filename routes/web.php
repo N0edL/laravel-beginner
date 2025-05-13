@@ -1,13 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Livewire\ContactForm;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 Route::get('/contact', ContactForm::class);
 
