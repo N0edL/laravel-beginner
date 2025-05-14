@@ -34,9 +34,8 @@
             <!-- Portfolio Overview -->
             @livewire('admin-stats')
 
-
             <!-- Projects Table -->
-            <livewire:projects-tabel />
+            @livewire('projects-tabel')
         </div>
     </div>
 </x-app-layout>
