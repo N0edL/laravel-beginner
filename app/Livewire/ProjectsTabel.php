@@ -6,14 +6,15 @@ use App\Models\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+
 class ProjectsTabel extends Component
 {
     use WithPagination;
 
     public $search = '';
     public $perPage = 10;
-    public $sortField = 'date';
-    public $sortDirection = 'desc';
+    public $sortField = 'name';
+    public $sortDirection = 'asc';
     public $isOpen = false;
     public $activeFilter = '';
     public $projectId;
@@ -57,11 +58,13 @@ class ProjectsTabel extends Component
         if ($this->sortField === $field) {
             $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
         } else {
+            if ($field === 'due_date') {
+                $this->sortDirection = 'desc';
+            } else {
+                $this->sortDirection = 'asc';
+            }
             $this->sortField = $field;
-            $this->sortDirection = 'asc';
         }
-
-        $this->sortField = $field;
     }
 
     public function filterByActive($status)
@@ -137,6 +140,7 @@ class ProjectsTabel extends Component
 
         $this->closeModal();
         $this->resetInputFields();
+        event(new ProjectEvent());
     }
 
     private function resetInputFields()
@@ -148,4 +152,5 @@ class ProjectsTabel extends Component
         $this->due_date = null;
         $this->active = false;
     }
+
 }

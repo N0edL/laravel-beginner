@@ -143,5 +143,6 @@
 
         {{-- Scripts --}}
         @livewireScripts
+
     </body>
 </html>

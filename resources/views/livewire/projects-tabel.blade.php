@@ -3,21 +3,6 @@
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-100">Portfolio Projects</h2>
             <div class="flex space-x-2">
-                <div class="flex items-center space-x-2">
-                    <button wire:click="filterByActive('active')" class="px-3 py-1 text-sm {{ $activeFilter === 'active' ? 'bg-green-500 text-white' : 'bg-gray-200 dark:bg-neutral-700 text-gray-700 dark:text-neutral-300' }} rounded-md">
-                        Active
-                    </button>
-                    <button wire:click="filterByActive('inactive')" class="px-3 py-1 text-sm {{ $activeFilter === 'inactive' ? 'bg-red-500 text-white' : 'bg-gray-200 dark:bg-neutral-700 text-gray-700 dark:text-neutral-300' }} rounded-md">
-                        Hidden
-                    </button>
-                    <button wire:click="resetFilters" class="px-3 py-1 text-sm {{ $activeFilter === '' ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-neutral-700 text-gray-700 dark:text-neutral-300' }} rounded-md">
-                        All
-                    </button>
-                </div>
-                <div>
-                    <input wire:model.debounce.300ms="search" type="text" placeholder="Search projects..."
-                        class="rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                </div>
                 <button wire:click="create" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                     Add Project
                 </button>
@@ -34,37 +19,33 @@
             <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                 <thead class="bg-gray-50 dark:bg-neutral-700">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider cursor-pointer" wire:click="sortBy('name')">
-                            Project Name
-                            @if($sortField === 'name')
-                                @if($sortDirection === 'asc')
-                                    <span>↑</span>
-                                @else
-                                    <span>↓</span>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider cursor-pointer align-middle" wire:click="sortBy('name')">
+                            <span class="flex items-center gap-1">
+                                Name
+                                @if($sortField === 'name')
+                                    <span>{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
                                 @endif
-                            @endif
+                            </span>
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider">
-                            Description
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider align-middle">
+                            <span class="flex items-center">Description</span>
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider">
-                            Tech Stack
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider align-middle">
+                            <span class="flex items-center">Tech Stack</span>
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider cursor-pointer" wire:click="sortBy('date')">
-                            Date
-                            @if($sortField === 'date')
-                                @if($sortDirection === 'asc')
-                                    <span>↑</span>
-                                @else
-                                    <span>↓</span>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider cursor-pointer align-middle" wire:click="sortBy('due_date')">
+                            <span class="flex items-center gap-1">
+                                Date
+                                @if($sortField === 'due_date')
+                                    <span>{{ $sortDirection === 'desc' ? '↑' : '↓' }}</span>
                                 @endif
-                            @endif
+                            </span>
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider">
-                            Status
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider align-middle">
+                            <span class="flex items-center">Status</span>
                         </th>
-                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider">
-                            Actions
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-neutral-400 uppercase tracking-wider align-middle">
+                            <span class="flex items-center justify-end">Actions</span>
                         </th>
                     </tr>
                 </thead>
@@ -81,7 +62,7 @@
                                 <div class="text-sm text-gray-500 dark:text-neutral-400">{{ $project->stack }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-neutral-400">
-                                {{ $project->date ? date('M d, Y', strtotime($project->date)) : '-' }}
+                                {{ $project->due_date ? date('M d, Y', strtotime($project->due_date)) : '-' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button wire:click="toggleActive({{ $project->id }})" class="px-2 py-1 text-xs font-medium rounded-full {{ $project->active ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50' : 'bg-gray-100 text-gray-800 dark:bg-neutral-700 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-600' }}">
@@ -129,14 +110,18 @@
                             <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Project Name</label>
                             <input type="text" id="name" wire:model="name"
                                 class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                            @error('name') <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span> @enderror
+                            @error('name')
+                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
                             <label for="description" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Description</label>
                             <textarea id="description" wire:model="description" rows="3"
                                 class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
-                            @error('description') <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span> @enderror
+                            @error('description')
+                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
@@ -144,14 +129,18 @@
                             <textarea id="stack" wire:model="stack" rows="2"
                                 placeholder="Laravel, Vue.js, Tailwind CSS, etc."
                                 class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
-                            @error('stack') <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span> @enderror
+                            @error('stack')
+                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="date" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Date (Leave blank for today's date)</label>
-                            <input type="date" id="date" wire:model="date"
+                            <label for="due_date" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Date (Leave blank for today's date)</label>
+                            <input type="date" id="due_date" wire:model="due_date"
                                 class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                            @error('date') <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span> @enderror
+                            @error('due_date')
+                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
