@@ -9,12 +9,6 @@
             </div>
         </div>
 
-        @if (session()->has('message'))
-            <div class="bg-green-100 dark:bg-green-900/30 border-l-4 border-green-500 text-green-700 dark:text-green-400 p-4 mb-4" role="alert">
-                <p>{{ session('message') }}</p>
-            </div>
-        @endif
-
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                 <thead class="bg-gray-50 dark:bg-neutral-700">
@@ -65,9 +59,10 @@
                                 {{ $project->due_date ? date('M d, Y', strtotime($project->due_date)) : '-' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button wire:click="toggleActive({{ $project->id }})" class="px-2 py-1 text-xs font-medium rounded-full {{ $project->active ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50' : 'bg-gray-100 text-gray-800 dark:bg-neutral-700 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-600' }}">
+                                <div class="inline-block text-xs font-medium rounded-full px-2 py-1
+                                    {{ $project->active ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' : 'bg-gray-100 text-gray-800 dark:bg-neutral-700 dark:text-neutral-400' }}">
                                     {{ $project->active ? 'Active' : 'Hidden' }}
-                                </button>
+                                </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <button wire:click="edit({{ $project->id }})" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 mr-3">

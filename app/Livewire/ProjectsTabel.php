@@ -137,10 +137,9 @@ class ProjectsTabel extends Component
             ]
         );
 
-        session()->flash('message', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
-
         $this->closeModal();
-        $this->resetInputFields();
+        session()->flash('message', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
+        return redirect(request()->header('Referer') ?? url()->previous());
     }
 
     private function resetInputFields()
