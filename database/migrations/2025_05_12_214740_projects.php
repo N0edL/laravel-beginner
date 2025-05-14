@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('stack')->nullable();
             $table->date('due_date')->nullable();
             $table->boolean('active')->default(true);
+            $table->text('url')->nullable();
             $table->timestamps();
         });
     }

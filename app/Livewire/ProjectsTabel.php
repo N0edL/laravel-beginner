@@ -24,10 +24,7 @@ class ProjectsTabel extends Component
     public $stack;
     public $due_date;
     public $active;
-
-    protected $listeners = [
-        'refreshProjects' => '$refresh',
-    ];
+    public $url;
 
     protected $rules = [
         'name' => 'required|string|max:55',
@@ -35,6 +32,7 @@ class ProjectsTabel extends Component
         'stack' => 'required|string',
         'due_date' => 'nullable|date',
         'active' => 'boolean',
+        'url' => 'nullable|url',
     ];
 
     public function render()
@@ -103,6 +101,7 @@ class ProjectsTabel extends Component
         $this->stack = $project->stack;
         $this->due_date = $project->due_date ? $project->due_date->format('Y-m-d') : null;
         $this->active = $project->active;
+        $this->url = $project->url;
 
         $this->openModal();
     }
@@ -134,6 +133,7 @@ class ProjectsTabel extends Component
                 'stack' => $this->stack,
                 'due_date' => $this->due_date ? $this->due_date : now(),
                 'active' => $this->active,
+                'url' => $this->url,
             ]
         );
 
@@ -150,5 +150,6 @@ class ProjectsTabel extends Component
         $this->stack = '';
         $this->due_date = null;
         $this->active = false;
+        $this->url = '';
     }
 }

@@ -167,19 +167,21 @@
                                         <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
                                         <h3 class="text-xl font-bold text-white text-center">{{ $project->name }}</h3>
                                     </div>
-                                    <div class="text-white/80 text-sm mb-3 line-clamp-2">{{ $project->description }}</div>
-                                    <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <div class="text-white/80 text-sm mb-3 line-clamp-3">{{ $project->description }}</div>
+                                    <div class="flex flex-wrap gap-1.5 mb-8">
                                         @foreach (explode(',', $project->stack ?? '') as $tech)
                                             @if (trim($tech) !== '')
                                                 <span class="px-2 py-0.5 text-xs font-medium bg-gray-200/10 rounded-full text-white/70">{{ trim($tech) }}</span>
                                             @endif
                                         @endforeach
                                     </div>
-                                    <div class="flex justify-between items-center">
+                                    <div class="flex justify-between items-center fixed bottom-5 left-5 right-5">
                                         <span class="text-sm text-white/70">{{ optional($project->due_date)->format('M Y') }}</span>
-                                        <a href="#" class="text-sm text-blue ">
+                                        @if ($project->url)
+                                        <a href="{{$project->url}}" class="text-sm text-blue ">
                                             View Project
                                         </a>
+                                        @endif
                                     </div>
                                 </div>
                             @endif

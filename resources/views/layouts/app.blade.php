@@ -47,7 +47,7 @@
                 {{-- Logo --}}
                 <div class="p-6 border-b border-neutral-200 dark:border-neutral-700">
                     <div class="shrink-0 flex items-center justify-center">
-                        <a href="{{ route('admin.index') }}">
+                        <a href="{{ route('home') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-neutral-100" />
                         </a>
                     </div>

@@ -15,6 +15,7 @@ class Project extends Model
         'stack',
         'active',
         'due_date',
+        'url',
     ];
 
     protected $casts = [

@@ -145,6 +145,16 @@
                 </div>
 
                 <div class="mb-4">
+                    <label for="url" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Project URL (Leave blank for none)</label>
+                    <input type="text" id="url" wire:model="url"
+                    placeholder="https://example.com"
+                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                    @error('url')
+                    <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
                     <label class="flex items-center">
                     <input type="checkbox" wire:model="active" class="rounded border-gray-300 dark:border-neutral-600 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                     <span class="ml-2 text-sm text-gray-700 dark:text-neutral-300">Show on portfolio</span>
