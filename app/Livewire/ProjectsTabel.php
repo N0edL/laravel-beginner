@@ -141,7 +141,6 @@ class ProjectsTabel extends Component
 
         $this->closeModal();
         $this->resetInputFields();
-        AdminStats::refresh();
     }
 
     private function resetInputFields()

@@ -95,71 +95,77 @@
     </div>
 
     @if($isOpen)
-        <div class="fixed z-50 inset-0 bg-gray-500 bg-opacity-75 dark:bg-neutral-800/75 flex items-center justify-center">
+        <div class="fixed z-50 inset-0 bg-gray-500 bg-opacity-75 dark:bg-neutral-800/75 flex items-center justify-center" wire:click.self="closeModal">
             <div class="bg-white dark:bg-neutral-800 rounded-lg overflow-hidden shadow-xl max-w-lg w-full">
-                <div class="px-6 py-4 bg-gray-100 dark:bg-neutral-700 border-b dark:border-neutral-600">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-neutral-100">
-                        {{ $projectId ? 'Edit Project' : 'Create New Project' }}
-                    </h3>
+            <div class="px-6 py-4 bg-gray-100 dark:bg-neutral-700 border-b dark:border-neutral-600">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-neutral-100">
+                {{ $projectId ? 'Edit Project' : 'Create New Project' }}
+                </h3>
+            </div>
+
+            <form wire:submit.prevent="store">
+                @csrf
+                <div class="px-6 py-4">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Project Name</label>
+                    <input type="text" id="name" wire:model="name"
+                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                    @error('name')
+                    <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
 
-                <form wire:submit.prevent="store">
-                    @csrf
-                    <div class="px-6 py-4">
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Project Name</label>
-                            <input type="text" id="name" wire:model="name"
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                            @error('name')
-                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
-                            @enderror
-                        </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Description</label>
+                    <textarea id="description" wire:model="description" rows="3"
+                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
+                    @error('description')
+                    <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                    @enderror
+                </div>
 
-                        <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Description</label>
-                            <textarea id="description" wire:model="description" rows="3"
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
-                            @error('description')
-                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
-                            @enderror
-                        </div>
+                <div class="mb-4">
+                    <label for="stack" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Tech Stack</label>
+                    <textarea id="stack" wire:model="stack" rows="2"
+                    placeholder="Laravel, Vue.js, Tailwind CSS, etc."
+                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
+                    @error('stack')
+                    <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                    @enderror
+                </div>
 
-                        <div class="mb-4">
-                            <label for="stack" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Tech Stack</label>
-                            <textarea id="stack" wire:model="stack" rows="2"
-                                placeholder="Laravel, Vue.js, Tailwind CSS, etc."
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
-                            @error('stack')
-                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="due_date" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Date (Leave blank for today's date)</label>
-                            <input type="date" id="due_date" wire:model="due_date"
-                                class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                            @error('due_date')
-                                <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="flex items-center">
-                                <input type="checkbox" wire:model="active" class="rounded border-gray-300 dark:border-neutral-600 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                                <span class="ml-2 text-sm text-gray-700 dark:text-neutral-300">Show on portfolio</span>
-                            </label>
-                        </div>
+                <div class="mb-4">
+                    <label for="due_date" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Date (Leave blank for today's date)</label>
+                    <div class="relative">
+                    <input
+                        type="date"
+                        id="due_date"
+                        wire:model="due_date"
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 dark:[color-scheme:dark] focus:ring-opacity-50"
+                    />
                     </div>
+                    @error('due_date')
+                    <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                    @enderror
+                </div>
 
-                    <div class="px-6 py-4 bg-gray-100 dark:bg-neutral-700 flex justify-end">
-                        <button type="button" wire:click="closeModal" class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-neutral-600 dark:text-neutral-200 rounded-md mr-2 hover:bg-gray-300 dark:hover:bg-neutral-500">
-                            Cancel
-                        </button>
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                            Save
-                        </button>
-                    </div>
-                </form>
+                <div class="mb-4">
+                    <label class="flex items-center">
+                    <input type="checkbox" wire:model="active" class="rounded border-gray-300 dark:border-neutral-600 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                    <span class="ml-2 text-sm text-gray-700 dark:text-neutral-300">Show on portfolio</span>
+                    </label>
+                </div>
+                </div>
+
+                <div class="px-6 py-4 bg-gray-100 dark:bg-neutral-700 flex justify-end">
+                <button type="button" wire:click="closeModal" class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-neutral-600 dark:text-neutral-200 rounded-md mr-2 hover:bg-gray-300 dark:hover:bg-neutral-500">
+                    Cancel
+                </button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                    Save
+                </button>
+                </div>
+            </form>
             </div>
         </div>
     @endif
