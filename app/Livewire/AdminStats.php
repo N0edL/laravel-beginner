@@ -10,9 +10,7 @@ class AdminStats extends Component
     public $totalProjects;
     public $activeProjects;
 
-    protected $listeners = [
-        'echo:projects,ProjectChanged' => 'refreshStats',
-    ];
+
     public function mount()
     {
         $this->refresh();

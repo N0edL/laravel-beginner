@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Livewire\AdminStats;
 
 
 class ProjectsTabel extends Component
@@ -140,7 +141,7 @@ class ProjectsTabel extends Component
 
         $this->closeModal();
         $this->resetInputFields();
-        event(new ProjectEvent());
+        AdminStats::refresh();
     }
 
     private function resetInputFields()
@@ -152,5 +153,4 @@ class ProjectsTabel extends Component
         $this->due_date = null;
         $this->active = false;
     }
-
 }
