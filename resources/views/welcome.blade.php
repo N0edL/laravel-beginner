@@ -60,7 +60,7 @@
                     </nav>
 
                     <!-- Hamburger -->
-                    <button @click="open = !open" class="md:hidden flex items-center justify-center">
+                    <button @click="open = !open" class="md:hidden flex items-center justify-center" aria-label="Toggle navigation">
                         <div class="grid justify-items-center gap-1.5">
                             <span class="h-0.5 w-7 rounded-full bg-white transition" :class="{ 'translate-y-1 rotate-45': open }"></span>
                             <span class="h-0.5 w-7 rounded-full bg-white transition" :class="{ '-translate-y-1 -rotate-45': open }"></span>
@@ -106,7 +106,6 @@
             </header>
 
             <section id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
-
                 <div class="circle-1 absolute bottom-1/3 left-1/2 w-80 h-80 bg-blue/10 rounded-full blur-3xl"></div>
                 <div class="circle-2 absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple/10 rounded-full blur-3xl"></div>
 
@@ -153,16 +152,20 @@
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(30,64,175,0.05),transparent_50%)] opacity-70"></div>
 
                 <div class="max-w-7xl mx-auto px-6 py-24 sm:px-8 md:px-12 lg:px-16 relative z-10">
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight fade-in-item">Latest Projects</h2>
-                    <p class="text-lg sm:text-xl text-white/80 mb-16 max-w-2xl fade-in-item">
-                        A showcase of my recent work, featuring modern design, clean code, and intuitive user experiences.
-                    </p>
-
+                    <div class="animate">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">Latest Projects</h2>
+                        <p class="text-lg sm:text-xl text-white/80 mb-16 max-w-2xl">
+                            A showcase of my recent work, featuring modern design, clean code, and intuitive user experiences.
+                        </p>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-
                         @foreach ($Projects as $project)
                             @if ($project->active)
-                                <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative fade-in-item">
+                                @php
+                                    $delay = 100 * ($loop->index + 1);
+                                @endphp
+                                <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate"
+                                    style="transition-delay: {{ $delay }}ms">
                                     <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
                                         <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
                                         <h3 class="text-xl font-bold text-white text-center">{{ $project->name }}</h3>

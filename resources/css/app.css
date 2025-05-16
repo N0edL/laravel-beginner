@@ -9,6 +9,16 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Animation classes */
+@layer utilities {
+    .animate {
+        @apply opacity-0 translate-y-8 transition-all duration-500 ease-out;
+    }
+    .animate.show {
+        @apply opacity-100 translate-y-0;
+    }
+}
+
 /* Animation for fading in elements */
 .fade-in-item {
     opacity: 0;
