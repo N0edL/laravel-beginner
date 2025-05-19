@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Livewire\AdminStats;
 
 
 class ProjectsTabel extends Component

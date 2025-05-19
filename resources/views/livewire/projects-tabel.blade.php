@@ -1,9 +1,9 @@
 <div>
     <div class="py-4 px-4 bg-white dark:bg-neutral-800 rounded-lg shadow-md">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-100">Portfolio Projects</h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-100">Projects</h2>
             <div class="flex space-x-2">
-                <button wire:click="create" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                <button wire:click="create" class="px-4 py-2 bg-gradient-to-r from-blue/80 to-sky-600 text-white rounded-md hover:bg-blue-700">
                     Add Project
                 </button>
             </div>
