@@ -22,7 +22,7 @@
     </head>
     <body>
         <div class="min-h-screen bg-gradient-to-b from-black to-gray-dark text-white">
-            <header x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-black  bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
+            <header x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
                 <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                     <a href="{{ route('home')}}" class="font-semibold text-xl">
                         <x-application-logo />
