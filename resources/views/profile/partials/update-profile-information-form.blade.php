@@ -47,6 +47,12 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="dob" :value="__('Date of Birth')" />
+            <x-text-input id="dob" name="dob" type="date" class="mt-1 block w-full" :value="old('dob', $user->dob)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('dob')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
