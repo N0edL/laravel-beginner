@@ -20,7 +20,7 @@
         @livewireStyles
     </head>
     <x-toast />
-    <body class="font-sans antialiased"
+    <body class="font-sans antialiased dark:[color-scheme:dark]"
         x-data="{
             sidebarOpen: JSON.parse(localStorage.getItem('sidebarOpen')) ?? (window.innerWidth >= 768),
             toggleSidebar() {

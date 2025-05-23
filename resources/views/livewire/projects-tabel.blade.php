@@ -136,7 +136,7 @@
                         type="date"
                         id="due_date"
                         wire:model="due_date"
-                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 dark:[color-scheme:dark] focus:ring-opacity-50"
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-200 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     />
                     </div>
                     @error('due_date')
