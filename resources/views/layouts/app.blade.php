@@ -104,7 +104,7 @@
                             <span class="inline-flex items-center justify-center w-9 h-7 rounded-full border-2 border-neutral-300 dark:border-neutral-600">
                                 <i class="fa-solid text-sm fa-user w-full"></i>
                             </span>
-                            <span class="ml-2 text-sm font-medium hidden md:inline">{{ Auth::user()->name }}</span>
+                            <span class="ml-2 text-sm font-medium hidden md:inline">{{ Auth::user()->name }} </span>
                             <i
                                 :class="open ? 'rotate-180' : 'rotate-0'"
                                 class="fa-solid ml-2 fa-chevron-down transition-all duration-300 text-xs">
