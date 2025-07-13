@@ -4,11 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>NoedL | My Portfolio</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -22,9 +25,15 @@
     </head>
     <body>
         <div class="min-h-screen bg-gradient-to-b from-black to-gray-dark text-white">
-            <header x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
+            {{-- WIP NOTIFY STICKY TOP BAR --}}
+            {{-- When removing change top-10 in header to top-0! --}}
+            <div class="wip-notify fixed top-0 left-0 right-0 z-50 bg-blue text-white text-center py-2">
+                <span class="text-sm">This site is a work in progress. Some features may not be fully functional yet.</span>
+            </div>
+
+            <header x-data="{ open: false }" class="fixed top-10 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
                 <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-                    <a href="{{ route('home')}}" class="font-semibold text-xl">
+                    <a href="{{ route('home')}}" class="font-medium text-xl">
                         <x-application-logo />
                     </a>
 
@@ -195,7 +204,6 @@
 
             <section id="about" class="py-24 bg-gradient-to-b from-black to-gray-dark relative">
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(30,64,175,0.05),transparent_50%)] opacity-70"></div>
-
                 <div class="max-w-7xl mx-auto px-6 py-24 sm:px-8 md:px-12 lg:px-16 relative z-10">
                     <div class="animate">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">About Me</h2>
@@ -211,6 +219,50 @@
                         </p>
                     </div>
                 </div>
+            </section>
+
+            <footer class="bg-gray-dark text-white/80">
+                <div class="container mx-auto h-32 max-w-7xl overflow-hidden">
+                    <div class="flex flex-col md:flex-row items-center justify-between h-full">
+                        <!-- Left side - .xyz text -->
+                        <div class="animate md:mb-0 flex items-center justify-center">
+                            <span class="text-8xl md:text-[11rem] font-bold opacity-20 leading-none transform -translate-y-9 align-middle">.xyz</span>
+                        </div>
+
+                        <!-- Right side - Copyright, Built with, and Social Icons -->
+                        <div class="flex flex-col items-center md:items-end text-center md:text-right justify-center h-full">
+                            <!-- Copyright text -->
+                            <p class="mb-2">
+                                © {{ date('Y') }} noedl.xyz. All rights reserved.
+                            </p>
+
+                            <!-- Built with text -->
+                            <p class="mb-2">
+                                Built with <a href="https://laravel.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Laravel</a>, <a href="https://tailwindcss.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Tailwind CSS</a> and ❤️</a>.
+                            </p>
+
+                            <!-- Social Icons -->
+                            <div class="flex space-x-4">
+                                <a href="https://discord.com/users/925538473044234260" class="text-white/50 hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                                    <i class="fa-brands fa-discord text-2xl"></i>
+                                </a>
+                                <a href="https://www.instagram.com/yves.glezer/" class="text-white/50 hover:text-white transition-colors duration-200" aria-label="Instagram">
+                                    <i class="fab fa-instagram text-2xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/noedl/" class="text-white/50 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in text-2xl"></i>
+                                </a>
+                                <a href="https://github.com/N0edL" class="text-white/50 hover:text-white transition-colors duration-200" aria-label="GitHub">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@N0edL" class="text-white/50 hover:text-white transition-colors duration-200" aria-label="YouTube">
+                                    <i class="fab fa-youtube text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
         <!-- Scripts -->
         @livewireScripts
