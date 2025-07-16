@@ -208,17 +208,23 @@
                     <div class="animate">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">About Me</h2>
                         <p class="text-lg sm:text-lg text-white/80 mb-16 max-w-2xl">
-                            Hey there! I'm Yves, a {{ \Carbon\Carbon::parse('2008-06-17')->age }}-year-old developer and designer from the Netherlands. My coding journey began in 2020, and what started as curiosity has grown into a full-blown passion for creating digital experiences.
+                            {{-- Hey there! I'm Yves, a {{ \Carbon\Carbon::parse('2008-06-17')->age }}-year-old developer and designer from the Netherlands. My coding journey began in 2020, and what started as curiosity has grown into a full-blown passion for creating digital experiences.
                             <br><br>
                             As both a <i>(learning)</i> <strong>Full-Stack Developer</strong> and
                             <span class='bg-gradient-to-tr from-blue/90 to-purple/90 bg-clip-text text-transparent cursor-pointer' onclick="window.location.href='https://discord.gg/E8GBTNfKB7' "title="Join me on Discord!">
                                 <strong>Designer</strong>
                             </span> I thrive at the intersection of logic and creativity. I love the challenge of building robust web applications just as much as crafting intuitive interfaces - always with an eye for clean code and thoughtful user experiences.
                             <br><br>
-                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, brainstorming my next creation or ofcourse gaming. Want to collaborate or just chat? I'd love to connect!
+                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, brainstorming my next creation or ofcourse gaming. Want to collaborate or just chat? I'd love to connect! --}}
+                            @if($aboutMe)
+                                {!! $aboutMe->processed_text !!}
+                            @else
+                                Unable to fetch about me content!
+                            @endif
                         </p>
                     </div>
                 </div>
+
             </section>
 
             <footer class="bg-gray-dark text-white/80">

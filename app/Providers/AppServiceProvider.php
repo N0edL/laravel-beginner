@@ -3,16 +3,17 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\CustomMarkdownService;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        //
-    }
+    public function register()
+{
+    $this->app->singleton(CustomMarkdownService::class);
+}
 
     /**
      * Bootstrap any application services.
