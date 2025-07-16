@@ -111,13 +111,15 @@ class ProjectsTabel extends Component
         $project->active = !$project->active;
         $project->save();
 
-        session()->flash('message', 'Project status updated successfully.');
+        // session()->flash('message', 'Project status updated successfully.');
+        $this->dispatch('flash-message', message: 'Project status updated successfully.');
     }
 
     public function delete($id)
     {
         Project::find($id)->delete();
-        session()->flash('message', 'Project deleted successfully.');
+        // session()->flash('message', 'Project deleted successfully.');
+        $this->dispatch('flash-message', message: 'Project deleted successfully.');
     }
 
     public function store()
@@ -137,8 +139,9 @@ class ProjectsTabel extends Component
         );
 
         $this->closeModal();
-        session()->flash('message', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
-        return redirect(request()->header('Referer') ?? url()->previous());
+        // session()->flash('message', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
+        // return redirect(request()->header('Referer') ?? url()->previous());
+        $this->dispatch('flash-message', message: $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
     }
 
     private function resetInputFields()

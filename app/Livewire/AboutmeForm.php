@@ -69,7 +69,7 @@ class AboutmeForm extends Component
         $this->closeModal();
 
         // Show success message
-        session()->flash('message', 'About me text updated successfully!');
+        $this->dispatch('flash-message', message: 'About me text updated successfully!');
     }
 
     public function togglePreview()
@@ -79,11 +79,17 @@ class AboutmeForm extends Component
 
     public function getPreviewText()
     {
-        return $this->markdownService->process($this->description);
+        return $this->markdownService->process(text: $this->description);
+    }
+
+    public function getMarkedDownText()
+    {
+        return $this->markdownService->process($this->text);
     }
 
     public function render()
     {
+
         return view('livewire.aboutme-form');
     }
 }

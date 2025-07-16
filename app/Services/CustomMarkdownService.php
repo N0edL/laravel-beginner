@@ -89,16 +89,32 @@ class CustomMarkdownService
         // Convert \n to actual line breaks (if escaped)
         $text = str_replace('\\n', "\n", $text);
 
-        // Convert double line breaks to paragraphs
-        $text = preg_replace('/\n\s*\n/', '</p><p>', $text);
+        // Normalize line breaks (convert all to \n)
+        $text = str_replace(["\r\n", "\r"], "\n", $text);
 
-        // Wrap in paragraph tags if we have paragraph breaks
-        if (strpos($text, '</p><p>') !== false) {
-            $text = '<p>' . $text . '</p>';
+        // Convert double line breaks to paragraph separators
+        $text = preg_replace('/\n\s*\n/', "\n\n", $text);
+
+        // Split into paragraphs
+        $paragraphs = explode("\n\n", $text);
+
+        // Process each paragraph
+        $processedParagraphs = [];
+        foreach ($paragraphs as $paragraph) {
+            $paragraph = trim($paragraph);
+            if (!empty($paragraph)) {
+                // Convert single line breaks within paragraphs to <br>
+                $paragraph = str_replace("\n", '<br>', $paragraph);
+                $processedParagraphs[] = $paragraph;
+            }
         }
 
-        // Convert single line breaks to <br> tags
-        $text = str_replace("\n", '<br>', $text);
+        // Join paragraphs with proper paragraph tags
+        if (count($processedParagraphs) > 1) {
+            $text = '<p>' . implode('</p><p>', $processedParagraphs) . '</p>';
+        } else {
+            $text = implode('', $processedParagraphs);
+        }
 
         return $text;
     }

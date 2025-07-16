@@ -31,7 +31,7 @@
                 <span class="text-sm">This site is a work in progress. Some features may not be fully functional yet.</span>
             </div>
 
-            <header x-data="{ open: false }" class="fixed top-10 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-85 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
+            <header x-data="{ open: false }" class="fixed top-10 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-60 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
                 <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                     <a href="{{ route('home')}}" class="font-medium text-xl">
                         <x-application-logo />
@@ -50,19 +50,19 @@
                                 </li>
                             @endforeach
                             @if (Route::has('login'))
-                                <li class="hidden md:block border-l border-gray-light h-6"></li>
                                 @auth
+                                    <li class="hidden md:block border-l border-gray-light h-6"></li>
                                     <li>
                                         <a href="{{ route('admin.index') }}" class="nav-link px-2.5 py-1 text-sm font-medium transition-colors duration-200 bg-blue rounded-full">
                                             Admin
                                         </a>
                                     </li>
-                                @else
+                                {{-- @else
                                     <li>
                                         <a href="{{ route('login') }}" class="nav-ölink px-2.5 py-1 text-sm font-medium transition-colors duration-200 bg-blue rounded-full">
                                             Login
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 @endauth
                             @endif
                         </ul>
