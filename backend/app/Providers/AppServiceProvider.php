@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Services\CustomMarkdownService;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,8 +19,15 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        if (request()->server('HTTP_X_FORWARDED_PROTO') == 'https') {
+            URL::forceScheme('https');
+        }
+
+        // Or force it for production environment
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
