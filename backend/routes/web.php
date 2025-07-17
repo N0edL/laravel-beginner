@@ -27,3 +27,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::redirect('/noedlstore', 'https://discord.gg/NmtEdcbQBf');
+
+Route::get('/gtav-texture-catalog', function () {
+    return response()->file(public_path('files/gtav-texture-catalog.php'));
+})->name('gtav-texture-catalog');
+
+Route::get('/pfpmaker', function () {
+    return response()->file(public_path('files/pfpmaker.php'));
+})->name('pfpmaker');
