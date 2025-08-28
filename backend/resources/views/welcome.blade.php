@@ -13,6 +13,27 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
+        <!-- Icons & Card -->
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <meta itemprop="image" content="/card.jpg" inertia="">
+
+        <meta name="twitter:image" content="/card.jpg" inertia="">
+        <meta name="twitter:creator" content="@noedl" inertia="">
+
+        <meta name="og:site_name" content="www.noedl.xyz" />
+        <meta property="og:title" content="NoedL | My Portfolio" />
+        <meta property="og:description" content="A portfolio website showcasing my projects and skills" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://noedl.xyz" />
+        <meta property="og:image" content="/card.jpg" />
+
+        <meta name="description" content="A portfolio website showcasing my projects and skills">
+        <meta name="keywords" content="portfolio, web development, full-stack, developer, designer, noedl, yves, netherlands">
+        <meta name="author" content="Yves, NoedL">
+        <meta name="robots" content="index, follow">
+
+
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
