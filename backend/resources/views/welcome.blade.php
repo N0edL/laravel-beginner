@@ -13,12 +13,14 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
-        <!-- Icons & Card -->
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        {{-- <!-- Favicons -->
+        <link rel="apple-touch-icon" href="{{ asset('assets/logo.png') }}" sizes="180x180">
+        <link rel="shortcut icon" href="{{ asset('assets/logo.png') }}" type="image/x-icon"> --}}
 
-        <meta itemprop="image" content="/card.jpg" inertia="">
+        <!-- Card -->
+        <meta itemprop="image" content="{{ asset('assets/card.jpg') }}" inertia="">
 
-        <meta name="twitter:image" content="/card.jpg" inertia="">
+        <meta name="twitter:image" content="{{ asset('assets/card.jpg') }}" inertia="">
         <meta name="twitter:creator" content="@noedl" inertia="">
 
         <meta name="og:site_name" content="www.noedl.xyz" />
@@ -26,7 +28,7 @@
         <meta property="og:description" content="A portfolio website showcasing my projects and skills" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://noedl.xyz" />
-        <meta property="og:image" content="/card.jpg" />
+        <meta property="og:image" content="{{ asset('assets/card.jpg') }}" />
 
         <meta name="description" content="A portfolio website showcasing my projects and skills">
         <meta name="keywords" content="portfolio, web development, full-stack, developer, designer, noedl, yves, netherlands">
@@ -52,7 +54,7 @@
                 <span class="text-sm">This site is a work in progress. Some features may not be fully functional yet.</span>
             </div>
 
-            <header x-data="{ open: false }" class="fixed top-10 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-60 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
+            <header x-data="{ open: false }" class="fixed md:top-10 top-16 left-0 right-0 bg-black bg-clip-padding backdrop-filter backdrop-blur bg-opacity-60 backdrop-saturate-100 backdrop-contrast-100 z-50 transition-all duration-300">
                 <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                     <a href="{{ route('home')}}" class="font-medium text-xl">
                         <x-application-logo />
@@ -124,9 +126,9 @@
                                             Admin
                                         </a>
                                     @else
-                                        <a href="{{ route('login') }}" class="nav-link px-3.5 py-2 text-base font-medium transition-colors duration-200 bg-blue rounded-full">
+                                        {{-- <a href="{{ route('login') }}" class="nav-link px-3.5 py-2 text-base font-medium transition-colors duration-200 bg-blue rounded-full">
                                             Login
-                                        </a>
+                                        </a> --}}
                                     @endauth
                                 </li>
                             @endif
@@ -157,11 +159,11 @@
                         </p>
 
                         <div class="fade-in-item flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay: 0.8s">
-                            <a href="#projects" class="bg-blue hover:bg-blue/90 text-white font-medium transition-all duration-300 rounded-full py-2 px-4 flex items-center gap-2">
+                            <a href="#projects" class="bg-blue hover:bg-blue/90 hover:scale-105 text-white font-medium transition-all duration-300 rounded-full py-2 px-4 flex items-center gap-2">
                                 View My Work
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                             </a>
-                            <a href="#contact" class="bg-gray-light hover:bg-gray-light/90 text-white font-medium transition-all duration-300 rounded-full py-2 px-4 flex items-center gap-2">
+                            <a href="#contact" class="bg-gray-light hover:bg-gray-light/90 hover:scale-x-105 text-white font-medium transition-all duration-300 rounded-full py-2 px-4 flex items-center gap-2">
                                 Get In Touch
                             </a>
                         </div>
@@ -189,36 +191,101 @@
                         </p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                        @foreach ($Projects as $project)
-                            @if ($project->active)
-                                @php
-                                    $delay = 100 * ($loop->index + 1);
-                                @endphp
-                                <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate"
-                                    style="transition-delay: {{ $delay }}ms">
-                                    <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
-                                        <h3 class="text-xl font-bold text-white text-center">{{ $project->name }}</h3>
+                        @if($Projects)
+                            @foreach ($Projects as $project)
+                                @if ($project->active)
+                                    @php
+                                        $delay = 100 * ($loop->index + 1);
+                                    @endphp
+                                    <div class="hover:scale-105 transition-all duration-300">
+                                        <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate "
+                                            style="transition-delay: {{ $delay }}ms">
+                                            <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                                <div class="absolute inset-0 bg-gradient-to-br from-blue/20 to-purple/20"></div>
+                                                <h3 class="text-xl font-bold text-white text-center">{{ $project->name }}</h3>
+                                            </div>
+                                            <div class="text-white/80 text-sm mb-3 line-clamp-3">{{ $project->description }}</div>
+                                            <div class="flex flex-wrap gap-1.5 mb-8">
+                                                @foreach (explode(',', $project->stack ?? '') as $tech)
+                                                    @if (trim($tech) !== '')
+                                                        <span class="px-2 py-0.5 text-xs font-medium bg-gray-200/10 rounded-full text-white/70">{{ trim($tech) }}</span>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                            <div class="flex justify-between items-center fixed bottom-5 left-5 right-5">
+                                                <span class="text-sm text-white/70">{{ optional($project->due_date)->format('M Y') }}</span>
+                                                @if ($project->url)
+                                                <a href="{{$project->url}}" class="text-sm text-blue ">
+                                                    View Project
+                                                </a>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="text-white/80 text-sm mb-3 line-clamp-3">{{ $project->description }}</div>
-                                    <div class="flex flex-wrap gap-1.5 mb-8">
-                                        @foreach (explode(',', $project->stack ?? '') as $tech)
-                                            @if (trim($tech) !== '')
-                                                <span class="px-2 py-0.5 text-xs font-medium bg-gray-200/10 rounded-full text-white/70">{{ trim($tech) }}</span>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="flex justify-between items-center fixed bottom-5 left-5 right-5">
-                                        <span class="text-sm text-white/70">{{ optional($project->due_date)->format('M Y') }}</span>
-                                        @if ($project->url)
-                                        <a href="{{$project->url}}" class="text-sm text-blue ">
-                                            View Project
-                                        </a>
-                                        @endif
-                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                            <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate">
+                                <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-gray-500 animate-pulse opacity-30"></div>
+                                    <h3 class="text-xl font-bold text-white text-center opacity-30">Loading</h3>
                                 </div>
-                            @endif
-                        @endforeach
+
+                                <div class="animate-pulse space-y-2 mb-4 opacity-30">
+                                    <div class="h-7 rounded bg-gray-500"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                                </div>
+                                <div class="animate-pulse space-x-3 flex opacity-30">
+                                    <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-1/12"></div>
+                                </div>
+                                <div class="flex justify-between items-center fixed bottom-5 left-5 right-5 opacity-30">
+                                    <div class="animate-pulse h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="animate-pulse h-4 rounded bg-gray-500 w-2/6"></div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate">
+                                <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-gray-500 animate-pulse opacity-30"></div>
+                                    <h3 class="text-xl font-bold text-white text-center opacity-30">Loading</h3>
+                                </div>
+
+                                <div class="animate-pulse space-y-2 mb-4 opacity-30">
+                                    <div class="h-7 rounded bg-gray-500"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                                </div>
+                                <div class="animate-pulse space-x-3 flex opacity-30">
+                                    <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-1/12"></div>
+                                </div>
+                                <div class="flex justify-between items-center fixed bottom-5 left-5 right-5 opacity-30">
+                                    <div class="animate-pulse h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="animate-pulse h-4 rounded bg-gray-500 w-2/6"></div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate">
+                                <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-gray-500 animate-pulse opacity-30"></div>
+                                    <h3 class="text-xl font-bold text-white text-center opacity-30">Loading</h3>
+                                </div>
+
+                                <div class="animate-pulse space-y-2 mb-4 opacity-30">
+                                    <div class="h-7 rounded bg-gray-500"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                                </div>
+                                <div class="animate-pulse space-x-3 flex opacity-30">
+                                    <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="h-4 rounded bg-gray-500 w-1/12"></div>
+                                </div>
+                                <div class="flex justify-between items-center fixed bottom-5 left-5 right-5 opacity-30">
+                                    <div class="animate-pulse h-4 rounded bg-gray-500 w-1/6"></div>
+                                    <div class="animate-pulse h-4 rounded bg-gray-500 w-2/6"></div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </section>
@@ -228,36 +295,52 @@
                 <div class="max-w-7xl mx-auto px-6 py-24 sm:px-8 md:px-12 lg:px-16 relative z-10">
                     <div class="animate">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">About Me</h2>
+                        @if($aboutMe)
                         <p class="text-lg sm:text-lg text-white/80 mb-16 max-w-2xl">
-                            {{-- Hey there! I'm Yves, a {{ \Carbon\Carbon::parse('2008-06-17')->age }}-year-old developer and designer from the Netherlands. My coding journey began in 2020, and what started as curiosity has grown into a full-blown passion for creating digital experiences.
-                            <br><br>
-                            As both a <i>(learning)</i> <strong>Full-Stack Developer</strong> and
-                            <span class='bg-gradient-to-tr from-blue/90 to-purple/90 bg-clip-text text-transparent cursor-pointer' onclick="window.location.href='https://discord.gg/E8GBTNfKB7' "title="Join me on Discord!">
-                                <strong>Designer</strong>
-                            </span> I thrive at the intersection of logic and creativity. I love the challenge of building robust web applications just as much as crafting intuitive interfaces - always with an eye for clean code and thoughtful user experiences.
-                            <br><br>
-                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, brainstorming my next creation or ofcourse gaming. Want to collaborate or just chat? I'd love to connect! --}}
-                            @if($aboutMe)
-                                {!! $aboutMe->processed_text !!}
-                            @else
-                                Unable to fetch about me content!
-                            @endif
+                            {!! $aboutMe->processed_text !!}
                         </p>
+                        @else
+                            <!-- Skeleton Loader -->
+                            <div class="mx-auto w-full opacity-30">
+                                <div class="flex flex-col space-y-6">
+
+                                    <!-- Row 1 -->
+                                    <div class="animate-pulse space-y-3">
+                                        <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                                        <div class="h-4 rounded bg-gray-500 w-4/6"></div>
+                                        <div class="h-4 rounded bg-gray-500 w-3/6"></div>
+                                    </div>
+
+                                    <!-- Row 2 -->
+                                    <div class="animate-pulse space-y-3">
+                                        <div class="h-4 rounded bg-gray-500 w-4/5"></div>
+                                        <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                                        <div class="h-4 rounded bg-gray-500 w-2/3"></div>
+                                    </div>
+
+                                    <!-- Row 3 -->
+                                    <div class="animate-pulse space-y-3">
+                                        <div class="h-4 rounded bg-gray-500 w-3/4"></div>
+                                        <div class="h-4 rounded bg-gray-500 w-1/2"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-
             </section>
 
             <footer class="bg-gray-dark text-white/80">
-                <div class="container mx-auto h-32 max-w-7xl overflow-hidden">
-                    <div class="flex flex-col md:flex-row items-center justify-between h-full">
+                <div class="container mx-auto max-w-7xl px-4 py-8 sm:py-10 md:py-12">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                         <!-- Left side - .xyz text -->
-                        <div class="animate md:mb-0 flex items-center justify-center">
-                            <span class="text-8xl md:text-[11rem] font-bold opacity-20 leading-none transform -translate-y-9 align-middle">.xyz</span>
+                        <div class="animate flex items-center justify-center mb-4 md:mb-0">
+                            <span class="text-6xl sm:text-8xl md:text-[11rem] font-bold opacity-20 leading-none align-middle">.xyz</span>
                         </div>
 
                         <!-- Right side - Copyright, Built with, and Social Icons -->
-                        <div class="flex flex-col items-center md:items-end text-center md:text-right justify-center h-full">
+                        <div class="flex flex-col items-center md:items-end text-center md:text-right justify-center w-full">
                             <!-- Copyright text -->
                             <p class="mb-2">
                                 © {{ date('Y') }} noedl.xyz. All rights reserved.
@@ -265,11 +348,11 @@
 
                             <!-- Built with text -->
                             <p class="mb-2">
-                                Built with <a href="https://laravel.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Laravel</a>, <a href="https://tailwindcss.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Tailwind CSS</a> and ❤️</a>.
+                                Built with <a href="https://laravel.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Laravel</a>, <a href="https://tailwindcss.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Tailwind CSS</a> and ❤️.
                             </p>
 
                             <!-- Social Icons -->
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4 mt-2">
                                 <a href="https://discord.com/users/925538473044234260" class="text-white/50 hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer" aria-label="Discord">
                                     <i class="fa-brands fa-discord text-2xl"></i>
                                 </a>
