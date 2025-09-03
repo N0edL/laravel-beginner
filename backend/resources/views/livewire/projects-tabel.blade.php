@@ -1,5 +1,5 @@
 <div>
-    <div class="py-4 px-4 bg-white dark:bg-neutral-800 rounded-lg shadow-md">
+    <div class="py-4 px-4 bg-white dark:bg-neutral-800 rounded-lg shadow-md fade-in-item" style="animation-delay: 0.4s;">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-100">Projects</h2>
             <div class="flex space-x-2">
