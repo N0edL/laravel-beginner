@@ -30,7 +30,7 @@ class ContactConfirmationMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('Thank you for contacting NoedL!')
+        return $this->subject('Thank you for contacting!')
                     ->view('emails.confirmation')
                     ->with(['data' => $this->data]);
     }

@@ -129,13 +129,6 @@
             <p><strong>Message:</strong></p>
             <p>{!! nl2br(e($data['message'] ?? '')) !!}</p>
         </main>
-
-        <footer class="mt-8">
-            <p class="text-gray-400">
-                This email was sent to <a href="#" class="hover:underline text-blue-400" target="_blank">{{ $data['email'] ?? 'N/A' }}</a>.<br>
-                Please note: This is an automated message and replies to this address are not monitored.
-            </p>
-        </footer>
     </section>
 </body>
 </html>

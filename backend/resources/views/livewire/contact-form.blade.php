@@ -9,9 +9,7 @@
         {{ session('error') }}
     </div>
     @endif
-    <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
-        <h1 class="mb-1 font-medium">Contact Us</h1>
-        <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">Feel free to reach out to us by filling out the form below.</p>
+    <div class="">
         <form wire:submit.prevent="send" class="flex flex-col gap-4">
             @csrf
 
@@ -22,23 +20,24 @@
             </div>
 
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Name:</label>
-                <input type="text" id="name" wire:model="name" autocomplete="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
+                <label for="name" class="block text-sm font-medium">Name</label>
+                <input type="text" id="name" wire:model="name" placeholder="Your Name" autocomplete="name" class="mt-1 text-lg block w-full rounded-md shadow-sm bg-gray-dark/50 border-gray/50 focus:ring-blue focus:border-blue ">
                 @error('name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
 
-                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Email:</label>
-                <input type="email" id="email" wire:model="email" autocomplete="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]">
+                <label for="email" class="block text-sm font-medium mt-4">Email</label>
+                <input type="email" id="email" wire:model="email" placeholder="email@example.com" autocomplete="email" class="mt-1 text-lg block w-full rounded-md shadow-sm bg-gray-dark/50 border-gray/50 focus:ring-blue focus:border-blue ">
                 @error('email') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
 
-                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-[#EDEDEC]">Message:</label>
-                <textarea id="message" wire:model="message" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 dark:bg-[#161615] dark:border-[#3E3E3A] dark:text-[#EDEDEC]"></textarea>
+                <label for="message" class="block text-sm font-medium mt-4">Message</label>
+                <textarea id="message" wire:model="message" placeholder="Write your message here..." class="mt-1 min-h-24 text-lg block w-full rounded-md shadow-sm bg-gray-dark/50 border-gray/50 focus:ring-blue focus:border-blue "></textarea>
                 @error('message') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
             </div>
             <div class="relative">
-                <button wire:loading.remove wire:target='send' type="submit" class="relative w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 ease-in-out">
-                    <span class="font-semibold">Submit</span>
+                <button wire:loading.remove wire:target='send' type="submit" class="flex items-center justify-center gap-3 relative w-full bg-blue text-white py-3 px-4 rounded-full hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 ease-in-out">
+                    <span class="font-semibold">Send Message</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send "><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
                 </button>
-                <div wire:loading wire:target='send' class="relative w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 ease-in-out">
+                <div wire:loading wire:target='send' class="flex items-center justify-center gap-3 relative w-full bg-blue text-white py-3 px-4 rounded-full hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 ease-in-out">
                     <div class="flex items-center justify-center">
                         <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
