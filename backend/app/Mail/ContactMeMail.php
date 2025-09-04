@@ -36,17 +36,17 @@ class ContactMeMail extends Mailable implements ShouldQueue
     {
         try {
             return $this->subject('New Contact Form Submission')
-                       ->view('emails.contact-form')
-                       ->with([
-                           'data' => $this->data
-                       ])
-                       ->withSymfonyMessage(function ($message) {
-                           // Add headers for better tracking and security
-                           $message->getHeaders()
-                                   ->addTextHeader('X-Message-ID', $this->messageId)
-                                   ->addTextHeader('X-Auto-Response-Suppress', 'All')
-                                   ->addTextHeader('X-Contact-Form', 'true');
-                       });
+                ->view('emails.admin')
+                ->with([
+                    'data' => $this->data
+                ])
+                ->withSymfonyMessage(function ($message) {
+                    // Add headers for better tracking and security
+                    $message->getHeaders()
+                        ->addTextHeader('X-Message-ID', $this->messageId)
+                        ->addTextHeader('X-Auto-Response-Suppress', 'All')
+                        ->addTextHeader('X-Contact-Form', 'true');
+                });
         } catch (\Exception $e) {
             Log::error("Failed to build contact form email: " . $e->getMessage(), [
                 'message_id' => $this->messageId

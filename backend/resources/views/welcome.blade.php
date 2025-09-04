@@ -13,9 +13,9 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
-        {{-- <!-- Favicons -->
+        <!-- Favicons -->
         <link rel="apple-touch-icon" href="{{ asset('assets/logo.png') }}" sizes="180x180">
-        <link rel="shortcut icon" href="{{ asset('assets/logo.png') }}" type="image/x-icon"> --}}
+        <link rel="shortcut icon" href="{{ asset('assets/logo.png') }}" type="image/x-icon">
 
         <!-- Card -->
         <meta itemprop="image" content="{{ asset('assets/card.jpg') }}" inertia="">
@@ -331,27 +331,111 @@
                 </div>
             </section>
 
+            <section id="skills" class="py-24 bg-black relative">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(30,64,175,0.05),transparent_50%)] opacity-70"></div>
+
+                <div class="max-w-7xl mx-auto px-6 py-24 sm:px-8 md:px-12 lg:px-16 relative z-10">
+                    <div class="animate">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">Skills</h2>
+                        <p class="text-lg sm:text-xl text-white/80 mb-16 max-w-2xl">
+                            A showcase of my recent work, featuring modern design, clean code, and intuitive user experiences.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate">
+                            <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                <div class="absolute inset-0 bg-gray-500 animate-pulse opacity-30"></div>
+                                <h3 class="text-xl font-bold text-white text-center opacity-30">Loading</h3>
+                            </div>
+
+                            <div class="animate-pulse space-y-2 mb-4 opacity-30">
+                                <div class="h-7 rounded bg-gray-500"></div>
+                                <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                            </div>
+                            <div class="animate-pulse space-x-3 flex opacity-30">
+                                <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="h-4 rounded bg-gray-500 w-1/12"></div>
+                            </div>
+                            <div class="flex justify-between items-center fixed bottom-5 left-5 right-5 opacity-30">
+                                <div class="animate-pulse h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="animate-pulse h-4 rounded bg-gray-500 w-2/6"></div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate">
+                            <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                <div class="absolute inset-0 bg-gray-500 animate-pulse opacity-30"></div>
+                                <h3 class="text-xl font-bold text-white text-center opacity-30">Loading</h3>
+                            </div>
+
+                            <div class="animate-pulse space-y-2 mb-4 opacity-30">
+                                <div class="h-7 rounded bg-gray-500"></div>
+                                <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                            </div>
+                            <div class="animate-pulse space-x-3 flex opacity-30">
+                                <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="h-4 rounded bg-gray-500 w-1/12"></div>
+                            </div>
+                            <div class="flex justify-between items-center fixed bottom-5 left-5 right-5 opacity-30">
+                                <div class="animate-pulse h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="animate-pulse h-4 rounded bg-gray-500 w-2/6"></div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-dark/80 backdrop-blur rounded-2xl border border-gray-light/20 p-5 hover:shadow-md transition-all duration-300 group relative animate">
+                            <div class="relative overflow-hidden mb-4 bg-gray rounded-xl aspect-video flex items-center justify-center">
+                                <div class="absolute inset-0 bg-gray-500 animate-pulse opacity-30"></div>
+                                <h3 class="text-xl font-bold text-white text-center opacity-30">Loading</h3>
+                            </div>
+
+                            <div class="animate-pulse space-y-2 mb-4 opacity-30">
+                                <div class="h-7 rounded bg-gray-500"></div>
+                                <div class="h-4 rounded bg-gray-500 w-5/6"></div>
+                            </div>
+                            <div class="animate-pulse space-x-3 flex opacity-30">
+                                <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="h-4 rounded bg-gray-500 w-1/12"></div>
+                            </div>
+                            <div class="flex justify-between items-center fixed bottom-5 left-5 right-5 opacity-30">
+                                <div class="animate-pulse h-4 rounded bg-gray-500 w-1/6"></div>
+                                <div class="animate-pulse h-4 rounded bg-gray-500 w-2/6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="py-24 bg-gradient-to-b from-black to-gray-dark relative">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(30,64,175,0.05),transparent_50%)] opacity-70"></div>
+                <div class="max-w-7xl mx-auto px-6 py-24 sm:px-8 md:px-12 lg:px-16 relative z-10">
+                    <div class="animate">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">Get In Touch</h2>
+                        <p class="text-lg sm:text-xl text-white/80 mb-16 max-w-2xl">
+                            Whether you have a project in mind, want to collaborate, or just want to say hello, feel free to reach out!
+                        </p>
+                    </div>
+                    <div class="max-w-3xl mx-auto">
+                        @livewire('contact-form')
+                    </div>
+                </div>
+            </section>
+
             <footer class="bg-gray-dark text-white/80">
                 <div class="container mx-auto max-w-7xl px-4 py-8 sm:py-10 md:py-12">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                        <!-- Left side - .xyz text -->
                         <div class="animate flex items-center justify-center mb-4 md:mb-0">
                             <span class="text-6xl sm:text-8xl md:text-[11rem] font-bold opacity-20 leading-none align-middle">.xyz</span>
                         </div>
-
-                        <!-- Right side - Copyright, Built with, and Social Icons -->
                         <div class="flex flex-col items-center md:items-end text-center md:text-right justify-center w-full">
-                            <!-- Copyright text -->
                             <p class="mb-2">
                                 © {{ date('Y') }} noedl.xyz. All rights reserved.
                             </p>
 
-                            <!-- Built with text -->
                             <p class="mb-2">
                                 Built with <a href="https://laravel.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Laravel</a>, <a href="https://tailwindcss.com" class="text-blue hover:text-blue/80 transition-colors duration-200">Tailwind CSS</a> and ❤️.
                             </p>
 
-                            <!-- Social Icons -->
                             <div class="flex space-x-4 mt-2">
                                 <a href="https://discord.com/users/925538473044234260" class="text-white/50 hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer" aria-label="Discord">
                                     <i class="fa-brands fa-discord text-2xl"></i>
