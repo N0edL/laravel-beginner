@@ -2,6 +2,9 @@
     <x-slot name="header">
         {{ __('Profile Edit') }}
     </x-slot>
+    <x-slot name="title">
+        {{ __('Dashboard - Profile Edit') }}
+    </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
