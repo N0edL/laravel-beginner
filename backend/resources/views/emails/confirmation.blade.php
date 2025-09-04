@@ -6,6 +6,21 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            margin: 0; /* Tailwind reset */
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+                        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+                        "Noto Color Emoji";
+            line-height: 1.5; /* default Tailwind line-height */
+            font-feature-settings: "liga"; /* ligatures aan */
+            text-size-adjust: 100%; /* browser text scaling */
+            -webkit-font-smoothing: antialiased; /* voor betere rendering op webkit */
+            -moz-osx-font-smoothing: grayscale; /* voor MacOS Firefox */
+            background-color: white; /* in Tailwind wordt vaak gebruikt als default */
+            color: #111827; /* default text kleur in Tailwind: gray-900 */
+        }
+
         .max-w-2xl {
             max-width: 42rem /* 672px */;
         }
@@ -25,11 +40,7 @@
             margin-right: auto;
         }
 
-        .bg-white {
-            background-color: #ffffff;
-        }
-
-        .dark\:bg-gray-900 {
+        .bg-gray-900 {
             background-color: #101828;
         }
 
@@ -49,11 +60,7 @@
             fill: currentColor;
         }
 
-        .text-gray-600 {
-            color: #718096;
-        }
-
-        .dark\:text-neutral-100 {
+        .text-neutral-100 {
             color: #f7fafc;
         }
 
@@ -65,11 +72,7 @@
             margin-top: 1rem /* 16px */;
         }
 
-        .text-gray-700 {
-            color: #4a5568;
-        }
-
-        .dark\:text-gray-200 {
+        .text-gray-200 {
             color: #edf2f7;
         }
 
@@ -81,31 +84,19 @@
             line-height: 1.75;
         }
 
-        .text-gray-600 {
-            color: #718096;
-        }
-
-        .dark\:text-gray-300 {
+        .text-gray-300 {
             color: #e2e8f0;
-        }
-
-        .text-blue-600 {
-            color: #3182ce;
         }
 
         .hover\:underline:hover {
             text-decoration: underline;
         }
 
-        .dark\:text-blue-400 {
+        .text-blue-400 {
             color: #63b3ed;
         }
 
-        .text-gray-500 {
-            color: #a0aec0;
-        }
-
-        .dark\:text-gray-400 {
+        .text-gray-400 {
             color: #99a1af;
         }
 
@@ -121,34 +112,30 @@
             font-size: 0.875rem /* 14px */;
             line-height: 1.25rem /* 20px */;
         }
-
-        .mt-8 {
-            margin-top: 2rem /* 32px */;
-        }
     </style>
 </head>
-<body>
-    <section class="max-w-2xl px-6 py-8 mx-auto bg-white dark:bg-gray-900">
+<body class="bg-gray-900">
+    <section class="max-w-2xl px-6 py-8 mx-auto">
         <header>
-            <span class="block h-9 text-sm w-auto fill-current text-gray-600 dark:text-neutral-100">
+            <span class="block h-9 text-sm w-auto fill-currenttext-neutral-100">
                 NoedL<span class="opacity-80">.xyz</span>
             </span>
         </header>
         <main class="mt-4">
-            <h2 class="text-gray-700 dark:text-gray-200">Hi {{ $data['name'] ?? 'N/A' }},</h2>
+            <h2 class="text-gray-200">Hi {{ $data['name'] ?? 'N/A' }},</h2>
 
-            <p class="mt-2 leading-loose text-gray-600 dark:text-gray-300">
+            <p class="mt-2 leading-loose text-gray-300">
                 Thanks for contacting me. I have received your message and will get back to you as soon as possible.
             </p>
 
-            <p class="mt-2 text-gray-600 dark:text-gray-300">
+            <p class="mt-2 text-gray-300">
                 Thanks, <br>
                 NoedL
             </p>
         </main>
         <footer class="mt-8">
-            <p class="text-gray-500 dark:text-gray-400">
-                This email was sent to <a href="#" class="text-blue-600 hover:underline dark:text-blue-400" target="_blank">{{ $data['email'] ?? 'N/A' }}</a>.<br>
+            <p class="text-gray-400">
+                This email was sent to <a href="#" class="hover:underline text-blue-400" target="_blank">{{ $data['email'] ?? 'N/A' }}</a>.<br>
                 Please note: This is an automated message and replies to this address are not monitored.
             </p>
         </footer>
