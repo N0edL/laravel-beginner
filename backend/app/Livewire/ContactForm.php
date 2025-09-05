@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Mail\ContactMeMail;
+use App\Mail\ContactConfirmationMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -84,6 +85,7 @@ class ContactForm extends Component
                 'email' => filter_var($this->email, FILTER_SANITIZE_EMAIL),
                 'message' => htmlspecialchars($this->message, ENT_QUOTES, 'UTF-8'),
                 'message_id' => $messageId,
+                'created_at' => now()->toDateTimeString(),
                 'ip' => request()->ip(),
             ];
 
@@ -95,7 +97,7 @@ class ContactForm extends Component
             Mail::to($adminEmail)->send(new ContactMeMail(data: $sanitizedData));
 
             // Send confirmation to user
-            Mail::to($sanitizedData['email'])->send(new \App\Mail\ContactConfirmationMail($sanitizedData));
+            Mail::to($sanitizedData['email'])->send(new ContactConfirmationMail($sanitizedData));
 
             Log::info("Contact form submitted successfully", [
                 'message_id' => $messageId,

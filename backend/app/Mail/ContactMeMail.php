@@ -23,7 +23,7 @@ class ContactMeMail extends Mailable implements ShouldQueue
     public function __construct(array $data)
     {
         // Only accept specified keys to prevent arbitrary data injection
-        $this->data = array_intersect_key($data, array_flip(['name', 'email', 'message', 'message_id', 'ip']));
+        $this->data = array_intersect_key($data, array_flip(['name', 'email', 'message', 'message_id', 'ip', 'created_at']));
         $this->messageId = $data['message_id'] ?? null;
     }
 

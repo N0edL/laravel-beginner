@@ -1,134 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Contact Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0; /* Tailwind reset */
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-                        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-                        "Noto Color Emoji";
-            line-height: 1.5; /* default Tailwind line-height */
-            font-feature-settings: "liga"; /* ligatures aan */
-            text-size-adjust: 100%; /* browser text scaling */
-            -webkit-font-smoothing: antialiased; /* voor betere rendering op webkit */
-            -moz-osx-font-smoothing: grayscale; /* voor MacOS Firefox */
-            background-color: white; /* in Tailwind wordt vaak gebruikt als default */
-            color: #111827; /* default text kleur in Tailwind: gray-900 */
-        }
+<body style="margin:0; padding:0; background:#000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: #000000;">
+        <tr>
+            <td align="center" style="padding:40px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="500"
+                    style="background:#0e0e0e; border-radius:24px; border:1px solid #333; overflow:hidden;">
+                    <tr>
+                        <td align="center" style="padding:40px 30px 30px; background:#111;">
+                            <h1 style="color:#ffffff; margin-bottom:5px; font-size: 1.8rem; line-height: 1.5rem; font-weight: 500; letter-spacing: -0.5px;">NoedL<span style="opacity:0.7; line-height: 1.5rem; font-weight: 500; letter-spacing: -0.5px;">.xyz</span></h1>
+                            <p style="color:#aaa; margin-top:0; margin-bottom:16px; font-weight: 600;">Admin Panel</p>
+                            <p style="background:#333; font-size: 12px; font-weight: 600; margin-top:5px; margin-bottom:0px; color:#fff; padding:6px 16px; border-radius:20px; display:inline-block;">
+                                NEW MESSAGE</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:30px; color:#fff;">
+                            <h2 style="text-align:center;">New Contact 📩</h2>
+                            <p style="text-align:center; margin-top:0; margin-bottom:20px; color:#aaa;">You have received a new message via the contact form. Details are below:</p>
+                            <div style="display: grid; gap: 16px; margin-bottom: 24px;">
+                                <div style="background: #ffffff08; border-radius: 16px; padding: 20px; border: 1px solid #ffffff1a;">
+                                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; margin-top: 0px;"><b>From</b></p>
+                                    <p style="color: #ffffff; font-size: 16px; font-weight: 500; margin: 0px;">{!! nl2br(e($data['name'] ?? 'N/A')) !!}</p>
+                                </div>
 
-        .max-w-2xl {
-            max-width: 42rem /* 672px */;
-        }
+                                <div style="background: #ffffff08; border-radius: 16px; padding: 20px; border: 1px solid #ffffff1a;">
+                                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; margin-top: 0px;"><b>Email</b></p>
+                                    <p style="color: #ffffff; font-size: 16px; font-weight: 500; margin: 0px;">{!! nl2br(e($data['email'] ?? 'N/A')) !!}</p>
+                                </div>
 
-        .px-6 {
-            padding-left: 1.5rem /* 24px */;
-            padding-right: 1.5rem /* 24px */;
-        }
+                                <div style="background: #ffffff08; border-radius: 16px; padding: 20px; border: 1px solid #ffffff1a;">
+                                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; margin-top: 0px;"><b>Date</b></p>
+                                    <p style="color: #ffffff; font-size: 16px; font-weight: 500; margin: 0px;">{!! nl2br(e($data['created_at'] ?? 'N/A')) !!}</p>
+                                </div>
+                            </div>
 
-        .py-8 {
-            padding-top: 2rem /* 32px */;
-            padding-bottom: 2rem /* 32px */;
-        }
+                            <div style="background: #ffffff08; border-radius: 16px; padding: 24px; border: 1px solid #ffffff1a; margin-top:20px;">
+                                <p style="color: #ffffff; font-size: 14px; font-weight: 600; margin-bottom: 12px;"><b>Message</b></p>
+                                <p style="color: #ffffffe6; font-size: 15px; line-height: 1.5;">{!! nl2br(e($data['message'] ?? 'N/A')) !!}</p>
+                            </div>
 
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .bg-gray-900 {
-            background-color: #101828;
-        }
-
-        .block {
-            display: block;
-        }
-
-        .h-9 {
-            height: 2.25rem /* 36px */;
-        }
-
-        .w-auto {
-            width: auto;
-        }
-
-        .fill-current {
-            fill: currentColor;
-        }
-
-        .text-neutral-100 {
-            color: #f7fafc;
-        }
-
-        .opacity-80 {
-            opacity: 0.8;
-        }
-
-        .mt-4 {
-            margin-top: 1rem /* 16px */;
-        }
-
-        .text-gray-200 {
-            color: #edf2f7;
-        }
-
-        .mt-2 {
-            margin-top: 0.5rem /* 8px */;
-        }
-
-        .leading-loose {
-            line-height: 1.75;
-        }
-
-        .hover\:underline:hover {
-            text-decoration: underline;
-        }
-
-        .text-blue-400 {
-            color: #63b3ed;
-        }
-
-        .text-gray-400 {
-            color: #99a1af;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .text-sm {
-            font-size: 0.875rem /* 14px */;
-            line-height: 1.25rem /* 20px */;
-        }
-
-        .mt-8 {
-            margin-top: 2rem /* 32px */;
-        }
-    </style>
-</head>
-<body>
-    <section class="max-w-2xl px-6 py-8 mx-auto bg-gray-900">
-        <header>
-            <span class="block h-9 text-sm w-auto fill-current text-neutral-100">
-                NoedL<span class="opacity-80">.xyz</span>
-            </span>
-
-        </header>
-        <main class="mt-4">
-            <h2 class="text-gray-200">New Contact Form Submission</h2>
-
-            <p><strong>Name:</strong> {{ $data['name'] ?? 'N/A' }}</p>
-            <p><strong>Email:</strong> <a href="mailto:{{ $data['email'] }}" class="hover:underline text-blue-400">{{ $data['email'] }}</a></p>
-            <p><strong>Message:</strong></p>
-            <p>{!! nl2br(e($data['message'] ?? '')) !!}</p>
-        </main>
-    </section>
+                            <p style="text-align:center; margin-top:20px;">
+                                <a href="mailto:{{ $data['email'] ?? '' }}?subject=Re: Your message&body=Hi {{ $data['name'] ?? '' }},%0D%0A%0D%0A"
+                                    style="background:#333; color:#fff; text-decoration:none; padding:12px 24px; border-radius:12px; font-weight:bold; display:inline-block;">
+                                    Reply Now
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center"
+                            style="padding:20px; color:#aaa; font-size:12px; border-top:1px solid #333;">
+                            © {{ date('Y') }} NoedL.xyz. All rights reserved.<br>
+                            This is an automated message. Please do not reply.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
-</html>

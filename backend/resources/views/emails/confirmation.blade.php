@@ -1,144 +1,61 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Contact Form</title>
+<body style="margin:0; padding:0; background:#000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#000000;">
+        <tr>
+            <td align="center" style="padding:40px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="500"
+                    style="background:#0e0e0e; border-radius:24px; border:1px solid #333; overflow:hidden;">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding:40px 30px 30px; background:#111;">
+                            <h1 style="color:#ffffff; margin-bottom:5px; font-size: 1.8rem; line-height: 1.5rem; font-weight: 500; letter-spacing: -0.5px;">NoedL<span style="opacity:0.7; line-height: 1.5rem; font-weight: 500; letter-spacing: -0.5px;">.xyz</span></h1>
+                            <p style="margin:8px 0 0; font-size:14px; color:#aaa;">
+                                Portfolio</p>
+                        </td>
+                    </tr>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0; /* Tailwind reset */
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-                        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-                        "Noto Color Emoji";
-            line-height: 1.5; /* default Tailwind line-height */
-            font-feature-settings: "liga"; /* ligatures aan */
-            text-size-adjust: 100%; /* browser text scaling */
-            -webkit-font-smoothing: antialiased; /* voor betere rendering op webkit */
-            -moz-osx-font-smoothing: grayscale; /* voor MacOS Firefox */
-            background-color: white; /* in Tailwind wordt vaak gebruikt als default */
-            color: #111827; /* default text kleur in Tailwind: gray-900 */
-        }
+                    <!-- Content -->
+                    <tr>
+                        <td align="center" style="padding:30px;">
+                            <h2 style="font-size:24px; font-weight:600; margin:0 0 12px; color:#ffffff;">Thanks {{
+                                $data['name'] ?? 'N/A' }}! ✨</h2>
+                            <p style="margin:0 0 30px; font-size:16px; line-height:1.5; color:#eee;">
+                                Your message has been received at
+                                <span style="color:#fff2aa; font-weight:300;">
+                                    {{ $data['created_at'] ?? 'N/A' }}
+                                </span>.
+                                I'll get back to you within 24-48 hours.
+                            </p>
 
-        .max-w-2xl {
-            max-width: 42rem /* 672px */;
-        }
+                            <!-- Info Card -->
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                                style="background:#ffffff08; border-radius:16px; border:1px solid #444;">
+                                <tr>
+                                    <td style="padding:20px; text-align:left;">
+                                        <p style="margin:0 0 8px; font-size:14px; font-weight:600; color:#ffffff;">Your
+                                            Message</p>
+                                        <p style="margin:0; font-size:14px; line-height:1.4; color:#ccc;">
+                                            {!! nl2br(e($data['message'] ?? '')) !!}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
 
-        .px-6 {
-            padding-left: 1.5rem /* 24px */;
-            padding-right: 1.5rem /* 24px */;
-        }
-
-        .py-8 {
-            padding-top: 2rem /* 32px */;
-            padding-bottom: 2rem /* 32px */;
-        }
-
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .bg-gray-900 {
-            background-color: #101828;
-        }
-
-        .block {
-            display: block;
-        }
-
-        .h-9 {
-            height: 2.25rem /* 36px */;
-        }
-
-        .w-auto {
-            width: auto;
-        }
-
-        .fill-current {
-            fill: currentColor;
-        }
-
-        .text-neutral-100 {
-            color: #f7fafc;
-        }
-
-        .opacity-80 {
-            opacity: 0.8;
-        }
-
-        .mt-4 {
-            margin-top: 1rem /* 16px */;
-        }
-
-        .text-gray-200 {
-            color: #edf2f7;
-        }
-
-        .mt-2 {
-            margin-top: 0.5rem /* 8px */;
-        }
-
-        .leading-loose {
-            line-height: 1.75;
-        }
-
-        .text-gray-300 {
-            color: #e2e8f0;
-        }
-
-        .hover\:underline:hover {
-            text-decoration: underline;
-        }
-
-        .text-blue-400 {
-            color: #63b3ed;
-        }
-
-        .text-gray-400 {
-            color: #99a1af;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .text-sm {
-            font-size: 0.875rem /* 14px */;
-            line-height: 1.25rem /* 20px */;
-        }
-    </style>
-</head>
-<body class="bg-gray-900">
-    <section class="max-w-2xl px-6 py-8 mx-auto">
-        <header>
-            <span class="block h-9 text-sm w-auto fill-currenttext-neutral-100">
-                NoedL<span class="opacity-80">.xyz</span>
-            </span>
-        </header>
-        <main class="mt-4">
-            <h2 class="text-gray-200">Hi {{ $data['name'] ?? 'N/A' }},</h2>
-
-            <p class="mt-2 leading-loose text-gray-300">
-                Thanks for contacting me. I have received your message and will get back to you as soon as possible.
-            </p>
-
-            <p class="mt-2 text-gray-300">
-                Thanks, <br>
-                NoedL
-            </p>
-        </main>
-        <footer class="mt-8">
-            <p class="text-gray-400">
-                This email was sent to <a href="#" class="hover:underline text-blue-400" target="_blank">{{ $data['email'] ?? 'N/A' }}</a>.<br>
-                Please note: This is an automated message and replies to this address are not monitored.
-            </p>
-        </footer>
-    </section>
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center"
+                            style="padding:20px; border-top:1px solid #333;">
+                            <p style="margin:0; font-size:12px; color:#aaa;">
+                                © {{ date('Y') }} NoedL.xyz. All rights reserved.
+                            </p>
+                            <p style="margin:4px 0 0; font-size:12px; color:#aaa;">
+                                This is an automated message. Please do not reply to this email.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
-</html>
