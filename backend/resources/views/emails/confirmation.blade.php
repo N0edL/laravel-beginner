@@ -1,3 +1,13 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="color-scheme" content="dark light">
+    <meta name="supported-color-schemes" content="dark light">
+</head>
+
 <body style="margin:0; padding:0; background:#000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#000000;">
         <tr>
@@ -59,3 +69,4 @@
         </tr>
     </table>
 </body>
+</html>
